@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.quixlab')
 
 @section('content')
 <div class="container">

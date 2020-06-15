@@ -32,7 +32,11 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('login')}}">Login</a>
+                    @guest
+                    <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a>
+                        @else
+                    <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Home | {{Auth::user()->getRole->deskripsi}}</a>
+                        @endguest
                     </li>
                     {{-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li> --}}
                 </ul>
