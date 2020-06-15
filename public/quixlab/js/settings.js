@@ -23,7 +23,7 @@ function quixSettings({version, layout, navheaderBg, headerBg, sidebarStyle, sid
     this.manageHeaderPosition();
     this.manageContainerLayout();
     this.manageRtlLayout();
-    this.manageResponsiveSidebar();
+    // this.manageResponsiveSidebar();
 
 }
 

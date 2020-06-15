@@ -14009,36 +14009,6 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="mini"]:not([data-layout="h
 html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout="horizontal"]) .footer {
   padding-right: 15rem; }
 
-[data-nav-headerbg="color_1"] .nav-header {
-  background-color: #7571f9; }
-
-[data-nav-headerbg="color_2"] .nav-header {
-  background-color: #27394F !important; }
-
-[data-nav-headerbg="color_3"] .nav-header {
-  background-color: #6a1b9a !important; }
-
-[data-nav-headerbg="color_4"] .nav-header {
-  background-color: #4527a0 !important; }
-
-[data-nav-headerbg="color_5"] .nav-header {
-  background-color: #c62828 !important; }
-
-[data-nav-headerbg="color_6"] .nav-header {
-  background-color: #283593 !important; }
-
-[data-nav-headerbg="color_7"] .nav-header {
-  background-color: #1565c0 !important; }
-
-[data-nav-headerbg="color_8"] .nav-header {
-  background-color: #0277bd !important; }
-
-[data-nav-headerbg="color_9"] .nav-header {
-  background-color: #00838f !important; }
-
-[data-nav-headerbg="color_10"] .nav-header {
-  background-color: #558b2f !important; }
-
 [data-headerbg="color_1"] .header {
   background-color: #fff; }
 
