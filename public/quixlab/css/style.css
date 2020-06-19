@@ -11322,12 +11322,12 @@ table.dataTable thead .sorting::after {
     font-weight: 500;
     line-height: 18px; }
   .card-header {
-    border-bottom: 0px;
+    border-bottom: 1px;
     background: transparent; }
     .card-header:first-child {
       border-radius: 0; }
   .card .card-body {
-    padding: 1.88rem 1.81rem; }
+    padding: 1rem 1rem; }
   .card-action a {
     display: inline-block;
     color: #fff;

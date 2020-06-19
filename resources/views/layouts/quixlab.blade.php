@@ -134,6 +134,14 @@
             <!-- row -->
 
             <div class="container-fluid">
+                @if(Session::has('message'))
+                <div class="alert alert-{{Session::get('message.class')}} alert-dismissible fade show" role="alert">
+                    {{Session::get('message.body')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
                 @yield('content')
             </div>
             <!-- #/ container -->
@@ -168,6 +176,7 @@
     <script src="{{asset('quixlab/js/settings.js')}}"></script>
     <script src="{{asset('quixlab/js/gleek.js')}}"></script>
     {{-- <script src="{{asset('quixlab/js/styleSwitcher.js')}}"></script> --}}
+    @stack('scripts')
 
 </body>
 

@@ -28,14 +28,14 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <a class="text-center" href="/">
-                                    <h2>Login</h2>
-                                    <h4>Dashboard Pelayanan</h4>
+                                    <h2>PT. KUTA INDAH PERSADA</h2>
+                                    <h4>Login</h4>
                                 </a>
                                 <form class="mt-5 mb-5 login-input" method="POST" action="{{route('login')}}">
                                     @csrf
                                     <div class="form-group">
                                         <input type="text" id="email" name="email" class="form-control"
-                                               value="{{ old('email') }}" placeholder="Nomor email" required autofocus>
+                                               value="{{ old('email') }}" placeholder="Email" required autofocus>
                                         @error('email')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror

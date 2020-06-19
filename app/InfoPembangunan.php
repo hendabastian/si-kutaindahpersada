@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class InfoPembangunan extends Model
 {
+    public $table = 'm_info_pembangunan';
     use SoftDeletes;
 }

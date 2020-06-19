@@ -29,7 +29,7 @@
             <hr>
             <li class="nav-label">Informasi</li>
             <li class="{{(Request::is('info-pembangunan-rumah/*')) ? 'active' : ''}}">
-                <a href="widgets.html" aria-expanded="false">
+                <a href="{{route('info-pembangunan-rumah.index')}}" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Informasi Pembangunan Rumah</span>
                 </a>
             </li>
