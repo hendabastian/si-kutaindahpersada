@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>{{$title . ' | ' . env('APP_NAME')}}</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -16,18 +16,13 @@
 </head>
 
 <body class="dark">
-
-
-
-
     <!--**********************************
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper">
         <div class="nav-header" style="background-color: #FF9859;">
             <div class="brand-logo">
-                <a href="index.html">
-
+                <a href="/home">
                     <b class="logo-abbr">
                         <h3 class="text-white">
                             KIP
@@ -79,14 +74,24 @@
                     <ul class="clearfix">
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user" data-toggle="dropdown">
-                                <span><i class="fa fa-user"></i> {{Auth::user()->name}}</span> <i class="fa fa-angle-down"
+                                <span><i class="fa fa-user"></i> {{Auth::user()->name}} |
+                                    {{Auth::user()->getRole->deskripsi}}</span> <i
+                                   class="fa fa-angle-down"
                                    aria-hidden="true"></i>
                             </a>
                             <div class="drop-down dropdown-language animated fadeIn faster dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="javascript:void()"><i class="fa fa-address-card"></i> Profil</a></li>
-                                        <li><a href="javascript:void()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                                        <li><a href="javascript:void()"><i class="fa fa-address-card"></i> Profil</a>
+                                        </li>
+                                        <li><a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();"><i
+                                                   class="fa fa-sign-out"></i> Logout</a></li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            @csrf
+                                        </form>
                                     </ul>
                                 </div>
                             </div>
@@ -102,40 +107,22 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">
-            <div class="nk-nav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label">Dashboard</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./index.html">Home 1</a></li>
-                        </ul>
-                    </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./layout-blank.html">Blank</a></li>
-                            <li><a href="./layout-one-column.html">One Column</a></li>
-                            <li><a href="./layout-two-column.html">Two column</a></li>
-                            <li><a href="./layout-compact-nav.html">Compact Nav</a></li>
-                            <li><a href="./layout-vertical.html">Vertical</a></li>
-                            <li><a href="./layout-horizontal.html">Horizontal</a></li>
-                            <li><a href="./layout-boxed.html">Boxed</a></li>
-                            <li><a href="./layout-wide.html">Wide</a></li>
+        @if (Auth::user()->user_role_id == 1)
+        @include('layouts._nav_admin')
 
+        @elseif(Auth::user()->user_role_id == 2)
+        @include('layouts._nav_drafter')
 
-                            <li><a href="./layout-fixed-header.html">Fixed Header</a></li>
-                            <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        @elseif(Auth::user()->user_role_id == 3)
+        @include('layouts._nav_drafter')
+
+        @elseif(Auth::user()->user_role_id == 4)
+        @include('layouts._nav_drafter')
+
+        @elseif(Auth::user()->user_role_id == 5)
+        @include('layouts._nav_drafter')
+
+        @endif
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -144,19 +131,10 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
             <!-- row -->
 
             <div class="container-fluid">
-
+                @yield('content')
             </div>
             <!-- #/ container -->
         </div>
