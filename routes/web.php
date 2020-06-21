@@ -20,13 +20,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->middleware('auth')->group(function() {
+Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->group(function() {
     Route::get('index', 'InformasiPembangunanRumahController@index')->name('index');
-    Route::get('view', 'InformasiPembangunanRumahController@create')->name('view');
+    Route::get('view', 'InformasiPembangunanRumahController@view')->name('view');
     Route::get('create', 'InformasiPembangunanRumahController@create')->name('create');
-    Route::post('save', 'InformasiPembangunanRumahController@save')->name('save');
-    Route::get('edit', 'InformasiPembangunanRumahController@create')->name('edit');
-    Route::get('delete', 'InformasiPembangunanRumahController@create')->name('delete');
+    Route::post('create', 'InformasiPembangunanRumahController@create')->name('save');
+    Route::get('edit/{id}', 'InformasiPembangunanRumahController@edit')->name('edit');
+    Route::delete('delete', 'InformasiPembangunanRumahController@delete')->name('delete');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
