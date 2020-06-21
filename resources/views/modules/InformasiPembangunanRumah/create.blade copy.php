@@ -9,8 +9,7 @@
                 <form action="{{route('info-pembangunan-rumah.save')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <input type="textarea" name="deskripsi" id="deskripsi" class="form-control"
-                               value="{{$model->data}}">
+                        <input type="textarea" name="deskripsi" id="deskripsi" class="form-control">
                     </div>
                     <div class="form-group">
                         <input type="file" name="file" id="file" class="form-control">

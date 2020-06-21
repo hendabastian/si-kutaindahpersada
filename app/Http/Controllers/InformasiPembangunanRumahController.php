@@ -70,6 +70,19 @@ class InformasiPembangunanRumahController extends Controller
                 return redirect(route('info-pembangunan-rumah.index'));
             }
         }
-        return $model;
+        return view('modules.InformasiPembangunanRumah.edit', [
+            'model' => $model,
+            'title' => 'Edit Info Pembangunan Rumah: ' . $model->id
+        ]);
+    }
+
+    public function delete($id, Request $request)
+    {
+        $model = InfoPembangunan::findOrFail($id)->delete();
+        $request->session()->flash('message', [
+            'body' => 'Data Berhasil dihapus',
+            'class' => 'danger'
+        ]);
+        return redirect(route('info-pembangunan-rumah.index'));
     }
 }
