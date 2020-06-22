@@ -32,10 +32,10 @@ Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->middle
 
 Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function() {
     Route::get('index', 'BrosurController@index')->name('index');
-    Route::get('view', 'BrosurController@view')->name('view');
+    Route::get('detail/{id}', 'BrosurController@detail')->name('detail');
     Route::get('create', 'BrosurController@create')->name('create');
     Route::post('create', 'BrosurController@create')->name('save');
-    Route::get('edit/{id}', 'BrosurController@edit')->name('edit');
+    Route::match(['get', 'put'], 'edit/{id}', 'BrosurController@edit')->name('edit');
     Route::delete('delete/{id}', 'BrosurController@delete')->name('delete');
 });
 Route::get('/home', 'HomeController@index')->name('home');

@@ -21,6 +21,7 @@ class InformasiPembangunanRumahController extends Controller
     {
         if ($request->isMethod('post')) {
             $model = new InfoPembangunan();
+            $model->judul = $request->input('judul');
             $model->deskripsi = $request->input('deskripsi');
             if ($request->hasFile('file')) {
                 $uid = uniqid(time(), true);
@@ -32,7 +33,7 @@ class InformasiPembangunanRumahController extends Controller
                     'body' => 'Data berhasil disimpan',
                     'class' => 'success'
                 ]);
-                return redirect(route('info-pembangunan-rumah.index'));
+                return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
             } else {
                 $request->session()->flash('message', [
                     'body' => 'Data gagal disimpan',
@@ -59,6 +60,7 @@ class InformasiPembangunanRumahController extends Controller
     {
         $model = InfoPembangunan::findOrFail($id);
         if ($request->isMethod('put')) {
+            $model->judul = $request->input('judul');
             $model->deskripsi = $request->input('deskripsi');
             if ($request->hasFile('file')) {
                 $uid = uniqid(time(), true);
@@ -70,7 +72,7 @@ class InformasiPembangunanRumahController extends Controller
                     'body' => 'Data berhasil disimpan',
                     'class' => 'success'
                 ]);
-                return redirect(route('info-pembangunan-rumah.index'));
+                return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
             } else {
                 $request->session()->flash('message', [
                     'body' => 'Data gagal disimpan',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brosur;
+use App\DetailBrosur;
 use Illuminate\Http\Request;
 
 class BrosurController extends Controller
@@ -16,32 +17,50 @@ class BrosurController extends Controller
         ]);
     }
 
+    public function detail($id)
+    {
+        $model = Brosur::findOrFail($id);
+        return view('modules.Brosur.detail', [
+            'model' => $model,
+            'title' => 'Brosur: '. $model->judul
+        ]);
+    }
+
     public function create(Request $request)
     {
+        $model = new Brosur();
         if ($request->isMethod('post')) {
-            $model = new Brosur();
+            $model->judul = $request->input('judul');
             $model->deskripsi = $request->input('deskripsi');
+            $model->save();
             if ($request->hasFile('file')) {
-                $uid = uniqid(time(), true);
-                $fileName = $uid . '_info_.' . $request->file('file')->getClientOriginalExtension();
-                $request->file('file')->move(public_path('uploads/'), $fileName);
-                $model->file = $fileName;
-                $model->save();
+                foreach ($request->file('file') as $index => $data) {
+                    $uid[$index] = uniqid(time(), true);
+                    $fileName[$index] = $uid[$index] . '_info_.' . $data->getClientOriginalExtension();
+                    $data->move(public_path('uploads/'), $fileName[$index]);
+
+                    $modelDetail[$index] = new DetailBrosur();
+                    $modelDetail[$index]->brosur_id = $model->id;
+                    $modelDetail[$index]->file = $fileName[$index];
+                    $modelDetail[$index]->save();
+                }
+
                 $request->session()->flash('message', [
                     'body' => 'Data berhasil disimpan',
                     'class' => 'success'
                 ]);
-                return redirect(route('info-pembangunan-rumah.index'));
+                return redirect(route('brosur.detail', ['id' => $model->id]));
             } else {
                 $request->session()->flash('message', [
                     'body' => 'Data gagal disimpan',
                     'class' => 'danger'
                 ]);
-                return redirect(route('info-pembangunan-rumah.index'));
+                return redirect(route('brosur.index'));
             }
         }
         return view('modules.Brosur.create', [
-            'title' => 'Tambah Brosur'
+            'model' => $model,
+            'title' => 'Buat Brosur'
         ]);
     }
 
@@ -49,24 +68,32 @@ class BrosurController extends Controller
     {
         $model = Brosur::findOrFail($id);
         if ($request->isMethod('put')) {
+            $model->judul = $request->input('judul');
             $model->deskripsi = $request->input('deskripsi');
+            $model->save();
             if ($request->hasFile('file')) {
-                $uid = uniqid(time(), true);
-                $fileName = $uid . '_info_.' . $request->file('file')->getClientOriginalExtension();
-                $request->file('file')->move(public_path('uploads/'), $fileName);
-                $model->file = $fileName;
-                $model->save();
+                foreach ($request->file('file') as $index => $data) {
+                    $uid[$index] = uniqid(time(), true);
+                    $fileName[$index] = $uid[$index] . '_info_.' . $data->getClientOriginalExtension();
+                    $data->move(public_path('uploads/'), $fileName[$index]);
+
+                    $modelDetail[$index] = new DetailBrosur();
+                    $modelDetail[$index]->brosur_id = $model->id;
+                    $modelDetail[$index]->file = $fileName[$index];
+                    $modelDetail[$index]->save();
+                }
+
                 $request->session()->flash('message', [
                     'body' => 'Data berhasil disimpan',
                     'class' => 'success'
                 ]);
-                return redirect(route('info-pembangunan-rumah.index'));
+                return redirect(route('brosur.detail', ['id' => $model->id]));
             } else {
                 $request->session()->flash('message', [
                     'body' => 'Data gagal disimpan',
                     'class' => 'danger'
                 ]);
-                return redirect(route('info-pembangunan-rumah.index'));
+                return redirect(route('brosur.index'));
             }
         }
         return view('modules.Brosur.edit', [
@@ -82,6 +109,6 @@ class BrosurController extends Controller
             'body' => 'Data Berhasil dihapus',
             'class' => 'danger'
         ]);
-        return redirect(route('info-pembangunan-rumah.index'));
+        return redirect(route('brosur.index'));
     }
 }

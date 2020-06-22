@@ -9,9 +9,15 @@
                 <form action="{{route('info-pembangunan-rumah.save')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
+                        <label for="judul">Judul</label>
+                        <input type="text" name="judul" id="judul" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
                         <input type="textarea" name="deskripsi" id="deskripsi" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label for="foto">Foto</label>
                         <input type="file" name="file" id="file" class="form-control">
                     </div>
                     <div class="form-group">

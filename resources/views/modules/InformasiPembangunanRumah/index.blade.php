@@ -22,7 +22,7 @@
 
                         <tr>
                             <td>
-                                {!! html_entity_decode($data->deskripsi) !!}
+                                {!! html_entity_decode($data->judul) !!}
                             </td>
                             <td>
                                 <form action="{{route('info-pembangunan-rumah.delete',  ['id' => $data->id])}}"
