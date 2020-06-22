@@ -2,7 +2,7 @@
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label">Menu</li>
-            <li>
+            <li class="{{Request::is('pemesanan/*' ? 'active' : '')}}">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-speedometer menu-icon"></i><span class="nav-text">Pemesanan</span>
                 </a>
@@ -11,17 +11,17 @@
                     <li><a href="./index.html">Laporan Pemesanan</a></li>
                 </ul>
             </li>
-            <li>
+            <li class="{{(Request::is('pemeriksaan-lokasi/*')) ? 'active' : ''}}">
                 <a href="widgets.html" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Pemeriksaan Lokasi</span>
                 </a>
             </li>
-            <li>
+            <li class="{{(Request::is('surat-perintah-kerja/*')) ? 'active' : ''}}">
                 <a href="widgets.html" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Surat Perintah Kerja</span>
                 </a>
             </li>
-            <li>
+            <li class="{{(Request::is('jadwal-pembuatan/*')) ? 'active' : ''}}">
                 <a href="widgets.html" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Jadwal Pembuatan Rumah</span>
                 </a>
@@ -33,8 +33,8 @@
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Informasi Pembangunan Rumah</span>
                 </a>
             </li>
-            <li>
-                <a href="widgets.html" aria-expanded="false">
+            <li class="{{(Request::is('brosur/*')) ? 'active' : ''}}">
+                <a href="{{route('brosur.index')}}" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Brosur</span>
                 </a>
             </li>

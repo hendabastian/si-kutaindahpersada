@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\InfoPembangunan;
+use App\Brosur;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class InformasiPembangunanRumahController extends Controller
+class BrosurController extends Controller
 {
     public function index()
     {
-        $model = InfoPembangunan::all();
-        return view('modules.InformasiPembangunanRumah.index', [
+        $model = Brosur::all();
+        return view('modules.Brosur.index', [
             'model' => $model,
             'title' => 'Info Pembangunan Rumah'
         ]);
@@ -20,7 +19,7 @@ class InformasiPembangunanRumahController extends Controller
     public function create(Request $request)
     {
         if ($request->isMethod('post')) {
-            $model = new InfoPembangunan();
+            $model = new Brosur();
             $model->deskripsi = $request->input('deskripsi');
             if ($request->hasFile('file')) {
                 $uid = uniqid(time(), true);
@@ -41,23 +40,14 @@ class InformasiPembangunanRumahController extends Controller
                 return redirect(route('info-pembangunan-rumah.index'));
             }
         }
-        return view('modules.InformasiPembangunanRumah.create', [
-            'title' => 'Tambah Info Pembangunan Rumah'
-        ]);
-    }
-
-    public function detail($id) 
-    {
-        $model = InfoPembangunan::findOrFail($id);
-        return view('modules.InformasiPembangunanRumah.detail', [
-            'model' => $model,
-            'title' => $model->id
+        return view('modules.Brosur.create', [
+            'title' => 'Tambah Brosur'
         ]);
     }
 
     public function edit($id, Request $request)
     {
-        $model = InfoPembangunan::findOrFail($id);
+        $model = Brosur::findOrFail($id);
         if ($request->isMethod('put')) {
             $model->deskripsi = $request->input('deskripsi');
             if ($request->hasFile('file')) {
@@ -79,18 +69,18 @@ class InformasiPembangunanRumahController extends Controller
                 return redirect(route('info-pembangunan-rumah.index'));
             }
         }
-        return view('modules.InformasiPembangunanRumah.edit', [
+        return view('modules.Brosur.edit', [
             'model' => $model,
-            'title' => 'Edit Info Pembangunan Rumah: ' . $model->id
+            'title' => 'Edit Brosur: ' . $model->id
         ]);
     }
 
     public function delete($id, Request $request)
     {
-        $model = InfoPembangunan::findOrFail($id)->delete();
+        $model = Brosur::findOrFail($id)->delete();
         $request->session()->flash('message', [
             'body' => 'Data Berhasil dihapus',
-            'class' => 'success'
+            'class' => 'danger'
         ]);
         return redirect(route('info-pembangunan-rumah.index'));
     }

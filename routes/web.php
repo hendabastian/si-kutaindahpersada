@@ -20,13 +20,22 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->middleware('auth')->group(function() {
     Route::get('index', 'InformasiPembangunanRumahController@index')->name('index');
-    Route::get('view', 'InformasiPembangunanRumahController@view')->name('view');
+    Route::get('detail/{id}', 'InformasiPembangunanRumahController@detail')->name('detail');
     Route::get('create', 'InformasiPembangunanRumahController@create')->name('create');
     Route::post('create', 'InformasiPembangunanRumahController@create')->name('save');
-    Route::get('edit/{id}', 'InformasiPembangunanRumahController@edit')->name('edit');
+    Route::match(['get', 'put'], 'edit/{id}', 'InformasiPembangunanRumahController@edit')->name('edit');
     Route::delete('delete/{id}', 'InformasiPembangunanRumahController@delete')->name('delete');
 });
 
+Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function() {
+    Route::get('index', 'BrosurController@index')->name('index');
+    Route::get('view', 'BrosurController@view')->name('view');
+    Route::get('create', 'BrosurController@create')->name('create');
+    Route::post('create', 'BrosurController@create')->name('save');
+    Route::get('edit/{id}', 'BrosurController@edit')->name('edit');
+    Route::delete('delete/{id}', 'BrosurController@delete')->name('delete');
+});
 Route::get('/home', 'HomeController@index')->name('home');

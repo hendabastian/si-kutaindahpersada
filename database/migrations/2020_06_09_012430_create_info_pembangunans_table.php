@@ -15,7 +15,8 @@ class CreateInfoPembangunansTable extends Migration
     {
         Schema::create('m_info_pembangunan', function (Blueprint $table) {
             $table->id();
-            $table->text('deskripsi');
+            $table->string('judul');
+            $table->text('deskripsi')->nullable();
             $table->string('file');
             $table->softDeletes();
             $table->timestamps();

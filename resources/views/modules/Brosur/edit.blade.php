@@ -6,9 +6,8 @@
         <div class="card">
             <div class="card-header">Dashboard</div>
             <div class="card-body">
-                <form action="{{route('info-pembangunan-rumah.edit', ['id' => $model->id])}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('info-pembangunan-rumah.save')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    @method('put')
                     <div class="form-group">
                         <input type="textarea" name="deskripsi" id="deskripsi" class="form-control"
                                value="{{$model->data}}">

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrosursTable extends Migration
+class CreateInfoPembangunanDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBrosursTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_brosur', function (Blueprint $table) {
+        Schema::create('m_info_pembangunan_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->text('deskripsi')->nullable();
+            $table->integer('info_pembangunan_id');
+            $table->string('file');
+            $table->string('deskripsi')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class CreateBrosursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_brosur');
+        Schema::dropIfExists('info_pembangunan_details');
     }
 }
