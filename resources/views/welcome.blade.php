@@ -96,13 +96,13 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            @if (isset($itemBrosur->detailBrosur))
+                            @if (isset($itemBrosur->detailBrosur->first()->file))
                             <img src="{{asset('uploads/' . $itemBrosur->detailBrosur->first()->file)}}"
-                            style="width: 100%;">
-                            @else 
+                                 style="width: 100%;">
+                            @else
                             <h4>TIdak ada Gambar</h4>
                             @endif
-                            
+
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">{{$itemBrosur->judul}}</div>
@@ -118,7 +118,8 @@
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Informasi Pembangunan Rumah</h2>
-                <h3 class="section-subheading text-muted">Berikut adalah informasi pembangunan rumah di perusahaan kami.</h3>
+                <h3 class="section-subheading text-muted">Berikut adalah informasi pembangunan rumah di perusahaan kami.
+                </h3>
             </div>
             <div class="row">
                 @foreach ($infoPembangunan as $index => $itemInfo)
@@ -390,8 +391,12 @@
                             <div class="modal-body">
                                 <!-- Project Details Go Here-->
                                 <h2 class="text-uppercase">{{$itemBrosur->judul}}</h2>
+                                @if (isset($itemBrosur->detailBrosur->first()->file))
                                 <img src="{{asset('uploads/' . $itemBrosur->detailBrosur->first()->file)}}"
                                      style="width: 100%;">
+                                @else
+                                <h4>TIdak ada Gambar</h4>
+                                @endif
                                 <p>{!! $itemBrosur->deskripsi !!}</p>
                                 <ul class="list-inline">
                                     <li>Date: {{$itemBrosur->created_at}}</li>
