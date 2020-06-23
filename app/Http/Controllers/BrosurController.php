@@ -50,12 +50,6 @@ class BrosurController extends Controller
                     'class' => 'success'
                 ]);
                 return redirect(route('brosur.detail', ['id' => $model->id]));
-            } else {
-                $request->session()->flash('message', [
-                    'body' => 'Data gagal disimpan',
-                    'class' => 'danger'
-                ]);
-                return redirect(route('brosur.index'));
             }
         }
         return view('modules.Brosur.create', [

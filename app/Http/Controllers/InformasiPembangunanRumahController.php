@@ -27,20 +27,14 @@ class InformasiPembangunanRumahController extends Controller
                 $uid = uniqid(time(), true);
                 $fileName = $uid . '_info_.' . $request->file('file')->getClientOriginalExtension();
                 $request->file('file')->move(public_path('uploads/'), $fileName);
-                $model->file = $fileName;
-                $model->save();
-                $request->session()->flash('message', [
-                    'body' => 'Data berhasil disimpan',
-                    'class' => 'success'
-                ]);
-                return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
-            } else {
-                $request->session()->flash('message', [
-                    'body' => 'Data gagal disimpan',
-                    'class' => 'danger'
-                ]);
-                return redirect(route('info-pembangunan-rumah.index'));
             }
+            $model->file = $fileName;
+            $model->save();
+            $request->session()->flash('message', [
+                'body' => 'Data berhasil disimpan',
+                'class' => 'success'
+            ]);
+            return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
         }
         return view('modules.InformasiPembangunanRumah.create', [
             'title' => 'Tambah Info Pembangunan Rumah'
@@ -66,20 +60,14 @@ class InformasiPembangunanRumahController extends Controller
                 $uid = uniqid(time(), true);
                 $fileName = $uid . '_info_.' . $request->file('file')->getClientOriginalExtension();
                 $request->file('file')->move(public_path('uploads/'), $fileName);
-                $model->file = $fileName;
-                $model->save();
-                $request->session()->flash('message', [
-                    'body' => 'Data berhasil disimpan',
-                    'class' => 'success'
-                ]);
-                return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
-            } else {
-                $request->session()->flash('message', [
-                    'body' => 'Data gagal disimpan',
-                    'class' => 'danger'
-                ]);
-                return redirect(route('info-pembangunan-rumah.index'));
-            }
+            } 
+            $model->file = $fileName;
+            $model->save();
+            $request->session()->flash('message', [
+                'body' => 'Data berhasil disimpan',
+                'class' => 'success'
+            ]);
+            return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
         }
         return view('modules.InformasiPembangunanRumah.edit', [
             'model' => $model,
