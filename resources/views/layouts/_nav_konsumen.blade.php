@@ -2,37 +2,41 @@
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label">Menu</li>
-            <li>
+            <li class="{{Request::is('pemesanan/*' ? 'active' : '')}}">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Pemesanan</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{route('pemesanan.index')}}">Data Pemesanan</a></li>
+                    <li><a href="./index.html">Laporan Pemesanan</a></li>
+                </ul>
+            </li>
+            <li class="{{(Request::is('pemeriksaan-lokasi/*')) ? 'active' : ''}}">
                 <a href="widgets.html" aria-expanded="false">
-                    <i class="icon-badge menu-icon"></i><span class="nav-text">Widget</span>
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Pemeriksaan Lokasi</span>
                 </a>
             </li>
-            <li>
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+            <li class="{{(Request::is('surat-perintah-kerja/*')) ? 'active' : ''}}">
+                <a href="widgets.html" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Surat Perintah Kerja</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="./index.html">Home 1</a></li>
-                </ul>
             </li>
-            <li class="mega-menu mega-menu-sm">
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
+            <li class="{{(Request::is('jadwal-pembuatan/*')) ? 'active' : ''}}">
+                <a href="widgets.html" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Jadwal Pembuatan Rumah</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="./layout-blank.html">Blank</a></li>
-                    <li><a href="./layout-one-column.html">One Column</a></li>
-                    <li><a href="./layout-two-column.html">Two column</a></li>
-                    <li><a href="./layout-compact-nav.html">Compact Nav</a></li>
-                    <li><a href="./layout-vertical.html">Vertical</a></li>
-                    <li><a href="./layout-horizontal.html">Horizontal</a></li>
-                    <li><a href="./layout-boxed.html">Boxed</a></li>
-                    <li><a href="./layout-wide.html">Wide</a></li>
-
-
-                    <li><a href="./layout-fixed-header.html">Fixed Header</a></li>
-                    <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
-                </ul>
+            </li>
+            <hr>
+            <li class="nav-label">Informasi</li>
+            <li class="{{(Request::is('info-pembangunan-rumah/*')) ? 'active' : ''}}">
+                <a href="{{route('info-pembangunan-rumah.index')}}" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Informasi Pembangunan Rumah</span>
+                </a>
+            </li>
+            <li class="{{(Request::is('brosur/*')) ? 'active' : ''}}">
+                <a href="{{route('brosur.index')}}" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Brosur</span>
+                </a>
             </li>
         </ul>
     </div>

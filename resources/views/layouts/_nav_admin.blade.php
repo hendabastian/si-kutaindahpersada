@@ -7,7 +7,7 @@
                     <i class="icon-speedometer menu-icon"></i><span class="nav-text">Pemesanan</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./index.html">Data Pemesanan</a></li>
+                    <li><a href="{{route('pemesanan.index')}}">Data Pemesanan</a></li>
                     <li><a href="./index.html">Laporan Pemesanan</a></li>
                 </ul>
             </li>

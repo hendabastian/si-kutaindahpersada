@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Pemesanan extends Model
 {
     use SoftDeletes;
+    public $table = 't_pemesanan';
 }

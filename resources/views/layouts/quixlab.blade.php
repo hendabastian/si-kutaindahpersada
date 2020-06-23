@@ -115,13 +115,13 @@
         @include('layouts._nav_drafter')
 
         @elseif(Auth::user()->user_role_id == 3)
-        @include('layouts._nav_drafter')
+        @include('layouts._nav_pelaksana')
 
         @elseif(Auth::user()->user_role_id == 4)
-        @include('layouts._nav_drafter')
+        @include('layouts._nav_direktur')
 
         @elseif(Auth::user()->user_role_id == 5)
-        @include('layouts._nav_drafter')
+        @include('layouts._nav_konsumen')
 
         @endif
         <!--**********************************
