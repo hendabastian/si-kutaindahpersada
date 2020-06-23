@@ -19,8 +19,8 @@ class CreatePemesanansTable extends Migration
             $table->string('no_pemesanan');
             $table->text('deskripsi');
             $table->text('alamat');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('status');
             $table->softDeletes();
             $table->timestamps();
