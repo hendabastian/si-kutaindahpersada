@@ -22,7 +22,7 @@ class BrosurController extends Controller
         $model = Brosur::findOrFail($id);
         return view('modules.Brosur.detail', [
             'model' => $model,
-            'title' => 'Brosur: '. $model->judul
+            'title' => 'Brosur: ' . $model->judul
         ]);
     }
 
@@ -76,19 +76,12 @@ class BrosurController extends Controller
                     $modelDetail[$index]->file = $fileName[$index];
                     $modelDetail[$index]->save();
                 }
-
-                $request->session()->flash('message', [
-                    'body' => 'Data berhasil disimpan',
-                    'class' => 'success'
-                ]);
-                return redirect(route('brosur.detail', ['id' => $model->id]));
-            } else {
-                $request->session()->flash('message', [
-                    'body' => 'Data gagal disimpan',
-                    'class' => 'danger'
-                ]);
-                return redirect(route('brosur.index'));
             }
+            $request->session()->flash('message', [
+                'body' => 'Data berhasil disimpan',
+                'class' => 'success'
+            ]);
+            return redirect(route('brosur.detail', ['id' => $model->id]));
         }
         return view('modules.Brosur.edit', [
             'model' => $model,
