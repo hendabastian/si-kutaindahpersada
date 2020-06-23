@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Pelayanan Umum</title>
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('quixlab/images/favicon.png')}}">
+    <title>Login | PT. Kuta Indah Persada</title>
+    <link rel="icon" type="image/x-icon" href="/landingpage/assets/img/favicon.ico" />
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
 </head>
 
