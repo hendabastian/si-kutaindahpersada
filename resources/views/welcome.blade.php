@@ -96,8 +96,13 @@
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
+                            @if (isset($itemBrosur->detailBrosur))
                             <img src="{{asset('uploads/' . $itemBrosur->detailBrosur->first()->file)}}"
-                                 style="width: 100%;">
+                            style="width: 100%;">
+                            @else 
+                            <h4>TIdak ada Gambar</h4>
+                            @endif
+                            
                         </a>
                         <div class="portfolio-caption">
                             <div class="portfolio-caption-heading">{{$itemBrosur->judul}}</div>
