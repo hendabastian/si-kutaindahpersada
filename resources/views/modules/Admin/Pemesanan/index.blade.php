@@ -27,22 +27,8 @@
                             </td>
                             <td>{!! $data->status_label !!}</td>
                             <td>
-                                @if (Auth::user()->user_role_id == 5)
-                                <form action="{{route('admin.pemesanan.delete',  ['id' => $data->id])}}"
-                                      method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <a href="{{route('admin.pemesanan.detail', ['id' => $data->id])}}"
-                                       class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Detail</a>
-                                    <a href="{{route('admin.pemesanan.edit', ['id' => $data->id])}}"
-                                       class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                                    <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>
-                                        Delete</button>
-                                </form>
-                                @else
                                 <a href="{{route('admin.pemesanan.detail', ['id' => $data->id])}}"
                                    class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Detail</a>
-                                @endif
                             </td>
                         </tr>
                         @endforeach
