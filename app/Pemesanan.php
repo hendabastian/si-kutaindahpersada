@@ -10,7 +10,7 @@ class Pemesanan extends Model
     use SoftDeletes;
     public $table = 't_pemesanan';
 
-    public function getStatusLabel()
+    public function getStatusLabelAttribute()
     {
         switch ($this->status) {
             case 1: 

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\InfoPembangunan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -11,7 +12,7 @@ class InformasiPembangunanRumahController extends Controller
     public function index()
     {
         $model = InfoPembangunan::all();
-        return view('modules.InformasiPembangunanRumah.index', [
+        return view('modules.Admin.InformasiPembangunanRumah.index', [
             'model' => $model,
             'title' => 'Info Pembangunan Rumah'
         ]);
@@ -36,7 +37,7 @@ class InformasiPembangunanRumahController extends Controller
             ]);
             return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
         }
-        return view('modules.InformasiPembangunanRumah.create', [
+        return view('modules.Admin.InformasiPembangunanRumah.create', [
             'title' => 'Tambah Info Pembangunan Rumah'
         ]);
     }
@@ -44,7 +45,7 @@ class InformasiPembangunanRumahController extends Controller
     public function detail($id) 
     {
         $model = InfoPembangunan::findOrFail($id);
-        return view('modules.InformasiPembangunanRumah.detail', [
+        return view('modules.Admin.InformasiPembangunanRumah.detail', [
             'model' => $model,
             'title' => $model->id
         ]);
@@ -69,7 +70,7 @@ class InformasiPembangunanRumahController extends Controller
             ]);
             return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
         }
-        return view('modules.InformasiPembangunanRumah.edit', [
+        return view('modules.Admin.InformasiPembangunanRumah.edit', [
             'model' => $model,
             'title' => 'Edit Info Pembangunan Rumah: ' . $model->id
         ]);

@@ -6,16 +6,20 @@
         <div class="card">
             <div class="card-header">{{$title}}</div>
             <div class="card-body">
-                <form action="{{route('pemesanan.create')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.pemesanan.create')}}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="no_pemesanan" id="no_pemesanan" value="{{$uid}}">
+                    @method('put')
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi Pekerjaan</label>
-                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="20"></textarea>
+                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="20">
+                            {{$model->deskripsi}}
+                        </textarea>
                     </div>
                     <div class="form-group">
                         <label for="foto">Alamat</label>
-                        <textarea name="alamat" id="alamat" cols="30" rows="4" class="form-control"></textarea>
+                        <textarea name="alamat" id="alamat" cols="30" rows="4" class="form-control">
+                            {{$model->alamat}}
+                        </textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>

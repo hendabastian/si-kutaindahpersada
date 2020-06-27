@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">{{$title}}</div>
             <div class="card-body">
-                <form action="{{route('pemesanan.create')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('konsumen.pemesanan.create')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="form-group">

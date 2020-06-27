@@ -25,30 +25,63 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->middleware('auth')->group(function () {
-    Route::get('index', 'InformasiPembangunanRumahController@index')->name('index');
-    Route::get('detail/{id}', 'InformasiPembangunanRumahController@detail')->name('detail');
-    Route::get('create', 'InformasiPembangunanRumahController@create')->name('create');
-    Route::post('create', 'InformasiPembangunanRumahController@create')->name('save');
-    Route::match(['get', 'put'], 'edit/{id}', 'InformasiPembangunanRumahController@edit')->name('edit');
-    Route::delete('delete/{id}', 'InformasiPembangunanRumahController@delete')->name('delete');
+// Route Admin
+Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+    Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->group(function () {
+        Route::get('index', 'Admin\InformasiPembangunanRumahController@index')->name('index');
+        Route::get('detail/{id}', 'Admin\InformasiPembangunanRumahController@detail')->name('detail');
+        Route::get('create', 'Admin\InformasiPembangunanRumahController@create')->name('create');
+        Route::post('create', 'Admin\InformasiPembangunanRumahController@create')->name('save');
+        Route::match(['get', 'put'], 'edit/{id}', 'Admin\InformasiPembangunanRumahController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Admin\InformasiPembangunanRumahController@delete')->name('delete');
+    });
+
+    Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function () {
+        Route::get('index', 'Admin\BrosurController@index')->name('index');
+        Route::get('detail/{id}', 'Admin\BrosurController@detail')->name('detail');
+        Route::get('create', 'Admin\BrosurController@create')->name('create');
+        Route::post('create', 'Admin\BrosurController@create')->name('save');
+        Route::match(['get', 'put'], 'edit/{id}', 'Admin\BrosurController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Admin\BrosurController@delete')->name('delete');
+    });
+
+    Route::name('pemesanan.')->prefix('pemesanan')->middleware('auth')->group(function () {
+        Route::get('index', 'Admin\PemesananController@index')->name('index');
+        Route::get('detail/{id}', 'Admin\PemesananController@detail')->name('detail');
+        Route::match(['get', 'post'], 'create', 'Admin\PemesananController@create')->name('create');
+        Route::match(['get', 'put'], 'edit/{id}', 'Admin\PemesananController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Admin\PemesananController@delete')->name('delete');
+    });
 });
 
-Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function () {
-    Route::get('index', 'BrosurController@index')->name('index');
-    Route::get('detail/{id}', 'BrosurController@detail')->name('detail');
-    Route::get('create', 'BrosurController@create')->name('create');
-    Route::post('create', 'BrosurController@create')->name('save');
-    Route::match(['get', 'put'], 'edit/{id}', 'BrosurController@edit')->name('edit');
-    Route::delete('delete/{id}', 'BrosurController@delete')->name('delete');
-});
 
-Route::name('pemesanan.')->prefix('pemesanan')->middleware('auth')->group(function () {
-    Route::get('index', 'PemesananController@index')->name('index');
-    Route::get('detail/{id}', 'PemesananController@detail')->name('detail');
-    Route::match(['get', 'post'], 'create', 'PemesananController@create')->name('create');
-    Route::match(['get', 'put'], 'edit/{id}', 'PemesananController@edit')->name('edit');
-    Route::delete('delete/{id}', 'PemesananController@delete')->name('delete');
+// Route Konsumen
+Route::name('konsumen.')->prefix('konsumen')->middleware('auth')->group(function () {
+    Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->group(function () {
+        Route::get('index', 'Konsumen\InformasiPembangunanRumahController@index')->name('index');
+        Route::get('detail/{id}', 'Konsumen\InformasiPembangunanRumahController@detail')->name('detail');
+        Route::get('create', 'Konsumen\InformasiPembangunanRumahController@create')->name('create');
+        Route::post('create', 'Konsumen\InformasiPembangunanRumahController@create')->name('save');
+        Route::match(['get', 'put'], 'edit/{id}', 'Konsumen\InformasiPembangunanRumahController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Konsumen\InformasiPembangunanRumahController@delete')->name('delete');
+    });
+
+    Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function () {
+        Route::get('index', 'Konsumen\BrosurController@index')->name('index');
+        Route::get('detail/{id}', 'Konsumen\BrosurController@detail')->name('detail');
+        Route::get('create', 'Konsumen\BrosurController@create')->name('create');
+        Route::post('create', 'Konsumen\BrosurController@create')->name('save');
+        Route::match(['get', 'put'], 'edit/{id}', 'Konsumen\BrosurController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Konsumen\BrosurController@delete')->name('delete');
+    });
+
+    Route::name('pemesanan.')->prefix('pemesanan')->middleware('auth')->group(function () {
+        Route::get('index', 'Konsumen\PemesananController@index')->name('index');
+        Route::get('detail/{id}', 'Konsumen\PemesananController@detail')->name('detail');
+        Route::match(['get', 'post'], 'create', 'Konsumen\PemesananController@create')->name('create');
+        Route::match(['get', 'put'], 'edit/{id}', 'Konsumen\PemesananController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Konsumen\PemesananController@delete')->name('delete');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
