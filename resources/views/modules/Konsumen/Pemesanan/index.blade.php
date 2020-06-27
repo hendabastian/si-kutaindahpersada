@@ -15,6 +15,7 @@
                 <table class="table table-striped">
                     <thead>
                         <th>No. Pemesanan</th>
+                        <th>Status</th>
                         <th style="width: 220px;">Aksi</th>
                     </thead>
                     <tbody>
@@ -24,6 +25,7 @@
                             <td>
                                 {!! html_entity_decode($data->no_pemesanan) !!}
                             </td>
+                            <td>{!! $data->status_label !!}</td>
                             <td>
                                 @if (Auth::user()->user_role_id == 5)
                                 <form action="{{route('konsumen.pemesanan.delete',  ['id' => $data->id])}}"
