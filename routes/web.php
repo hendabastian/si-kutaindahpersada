@@ -26,7 +26,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route Admin
-Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
     Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->group(function () {
         Route::get('index', 'Admin\InformasiPembangunanRumahController@index')->name('index');
         Route::get('detail/{id}', 'Admin\InformasiPembangunanRumahController@detail')->name('detail');
@@ -56,7 +56,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 
 
 // Route Konsumen
-Route::name('konsumen.')->prefix('konsumen')->middleware('auth')->group(function () {
+Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->group(function () {
     Route::name('info-pembangunan-rumah.')->prefix('info-pembangunan-rumah')->group(function () {
         Route::get('index', 'Konsumen\InformasiPembangunanRumahController@index')->name('index');
         Route::get('detail/{id}', 'Konsumen\InformasiPembangunanRumahController@detail')->name('detail');

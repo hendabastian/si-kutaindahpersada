@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">Dashboard</div>
             <div class="card-body">
-                <form action="{{route('info-pembangunan-rumah.save')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('konsumen.info-pembangunan-rumah.save')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="judul">Judul</label>

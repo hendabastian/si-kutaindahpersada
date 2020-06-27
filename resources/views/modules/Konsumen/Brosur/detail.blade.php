@@ -14,13 +14,13 @@
         <div class="card">
             <div class="card-header">{{$model->judul}}</div>
             <div class="card-body">
-                <form action="{{route('brosur.delete',  ['id' => $model->id])}}"
+                <form action="{{route('konsumen.brosur.delete',  ['id' => $model->id])}}"
                       method="post">
                     @csrf
                     @method('delete')
-                    <a href="{{route('brosur.detail', ['id' => $model->id])}}"
+                    <a href="{{route('konsumen.brosur.detail', ['id' => $model->id])}}"
                        class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Detail</a>
-                    <a href="{{route('brosur.edit', ['id' => $model->id])}}"
+                    <a href="{{route('konsumen.brosur.edit', ['id' => $model->id])}}"
                        class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Edit</a>
                     <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>
                         Delete</button>

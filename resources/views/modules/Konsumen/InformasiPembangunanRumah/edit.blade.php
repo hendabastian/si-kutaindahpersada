@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">Dashboard</div>
             <div class="card-body">
-                <form action="{{route('info-pembangunan-rumah.edit', ['id' => $model->id])}}" method="post"
+                <form action="{{route('konsumen.info-pembangunan-rumah.edit', ['id' => $model->id])}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
                     @method('put')

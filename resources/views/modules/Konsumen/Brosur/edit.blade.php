@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">{{$title}}</div>
             <div class="card-body">
-                <form action="{{route('brosur.edit', ['id' => $model->id])}}" method="post"
+                <form action="{{route('konsumen.brosur.edit', ['id' => $model->id])}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
                     @method('put')
