@@ -17,7 +17,6 @@
                     </thead>
                     <tbody>
                         @foreach($model as $index => $data)
-
                         <tr>
                             <td>
                                 {!! html_entity_decode($data->no_pemesanan) !!}

@@ -14,7 +14,7 @@ class Pemesanan extends Model
     {
         switch ($this->status) {
             case 1: 
-                return '<span class="label label-primary">Menunggu Pemeriksaan Lokasi</span>';
+                return '<span class="label label-warning">Menunggu Validasi Admin</span>';
             break;
             case 2: 
                 return '<span class="label label-primary">Menunggu Pemeriksaan Lokasi</span>';

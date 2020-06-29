@@ -84,24 +84,47 @@ class PemesananController extends Controller
     public function edit($id, Request $request)
     {
         $model = Pemesanan::findOrFail($id);
+        $oldFileKtp = $model->file_ktp;
         if ($request->isMethod('put')) {
             $model->user_id = Auth::user()->id;
+            $model->nama_pemesan = $request->input('nama_pemesan');
             $model->deskripsi = $request->input('deskripsi');
             $model->alamat = $request->input('alamat');
+            $model->alamat_proyek = $request->input('alamat_proyek');
+            $model->tipe_bangunan = $request->input('tipe_bangunan');
+            $model->luas_tanah = $request->input('luas_tanah');
+            $model->luas_bangunan = $request->input('luas_bangunan');
+            $model->no_ktp = $request->input('no_ktp');
             $model->status = 1;
+            if ($request->hasFile('file_ktp')) {
+                $uid = uniqid(time(), true);
+                $fileName = $uid . '_ktp_.' . $request->file('file_ktp')->getClientOriginalExtension();
+                $request->file('file_ktp')->move(public_path('uploads/'), $fileName);
+                $model->file_ktp = $fileName;
+            } else {
+                $model->file_ktp = $oldFileKtp;
+            }
             $model->save();
             $request->session()->flash('message', [
                 'class' => 'success',
-                'body' => 'Data pemesanan berhasil dirubah'
+                'body' => 'Data pemesanan berhasil diedit'
             ]);
-            return redirect(route('pemesanan.detail', ['id' => $model->id]));
+            return redirect(route('konsumen.pemesanan.detail', ['id' => $model->id]));
         } else {
-            $uid = date('d') . substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2) . date('m') . substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
-            return view('modules.Konsumen.Pemesanan.create', [
+            return view('modules.Konsumen.Pemesanan.edit', [
                 'model' => $model,
-                'uid' => $uid,
                 'title' => 'Edit Pemesanan: ' . $model->no_pemesanan
             ]);
         }
+    }
+
+    public function delete($id, Request $request)
+    {
+        Pemesanan::findOrFail($id)->delete();
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data Pemesanan Berhasil dihapus'
+        ]);
+        return redirect(route('konsumen.pemesanan.index'));
     }
 }

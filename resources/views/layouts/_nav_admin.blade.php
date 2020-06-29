@@ -2,7 +2,7 @@
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
             <li class="nav-label">Menu</li>
-            <li class="{{Request::is('admin/pemesanan/*' ? 'active' : '')}}">
+            <li class="{{Request::is('admin/pemesanan/*') ? 'active' : ''}}">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-speedometer menu-icon"></i><span class="nav-text">Pemesanan</span>
                 </a>
