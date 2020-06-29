@@ -32,8 +32,12 @@ class BrosurController extends Controller
         $model = new Brosur();
         if ($request->isMethod('post')) {
             $model->judul = $request->input('judul');
+            $model->model = $request->input('model');
+            $model->harga = $request->input('harga');
+            $model->lama_pembangunan = $request->input('lama_pembangunan');
+            $model->luas_tanah = $request->input('luas_tanah');
+            $model->luas_bangunan = $request->input('luas_bangunan');
             $model->deskripsi = $request->input('deskripsi');
-            $model->save();
             if ($request->hasFile('file')) {
                 foreach ($request->file('file') as $index => $data) {
                     $uid[$index] = uniqid(time(), true);
@@ -45,13 +49,13 @@ class BrosurController extends Controller
                     $modelDetail[$index]->file = $fileName[$index];
                     $modelDetail[$index]->save();
                 }
-
-                $request->session()->flash('message', [
-                    'body' => 'Data berhasil disimpan',
-                    'class' => 'success'
-                ]);
-                return redirect(route('brosur.detail', ['id' => $model->id]));
             }
+            $model->save();
+            $request->session()->flash('message', [
+                'body' => 'Data berhasil disimpan',
+                'class' => 'success'
+            ]);
+            return redirect(route('admin.brosur.detail', ['id' => $model->id]));
         }
         return view('modules.Admin.Brosur.create', [
             'model' => $model,
@@ -64,8 +68,13 @@ class BrosurController extends Controller
         $model = Brosur::findOrFail($id);
         if ($request->isMethod('put')) {
             $model->judul = $request->input('judul');
+            $model->model = $request->input('model');
+            $model->harga = $request->input('harga');
+            $model->lama_pembangunan = $request->input('lama_pembangunan');
+            $model->luas_tanah = $request->input('luas_tanah');
+            $model->luas_bangunan = $request->input('luas_bangunan');
             $model->deskripsi = $request->input('deskripsi');
-            $model->save();
+
             if ($request->hasFile('file')) {
                 foreach ($request->file('file') as $index => $data) {
                     $uid[$index] = uniqid(time(), true);
@@ -78,11 +87,12 @@ class BrosurController extends Controller
                     $modelDetail[$index]->save();
                 }
             }
+            $model->save();
             $request->session()->flash('message', [
                 'body' => 'Data berhasil disimpan',
                 'class' => 'success'
             ]);
-            return redirect(route('brosur.detail', ['id' => $model->id]));
+            return redirect(route('admin.brosur.detail', ['id' => $model->id]));
         }
         return view('modules.Admin.Brosur.edit', [
             'model' => $model,

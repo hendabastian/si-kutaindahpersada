@@ -16,6 +16,11 @@ class CreateBrosursTable extends Migration
         Schema::create('m_brosur', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('model');
+            $table->string('harga');
+            $table->string('lama_pembangunan');
+            $table->string('luas_tanah');
+            $table->string('luas_bangunan');
             $table->text('deskripsi')->nullable();
             $table->softDeletes();
             $table->timestamps();

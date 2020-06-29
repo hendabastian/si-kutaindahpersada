@@ -8,9 +8,6 @@
                 <h4>Pemesanan</h4>
             </div>
             <div class="card-body">
-                <a href="{{route('admin.pemesanan.create')}}" class="btn btn-primary">Tambah
-                    Pemesanan</a>
-                <hr>
                 @if(!empty($model))
                 <table class="table table-striped">
                     <thead>
@@ -35,7 +32,7 @@
                     </tbody>
                 </table>
                 @else
-                Tidak Ada DataPemesanan
+                Tidak Ada Data Pemesanan
                 @endif
             </div>
         </div>

@@ -18,7 +18,14 @@ class CreatePemesanansTable extends Migration
             $table->integer('user_id');
             $table->string('no_pemesanan');
             $table->text('deskripsi');
+            $table->string('nama_pemesan');
             $table->text('alamat');
+            $table->text('alamat_proyek');
+            $table->string('tipe_bangunan');
+            $table->string('luas_tanah');
+            $table->string('luas_bangunan');
+            $table->string('file_ktp');
+            $table->string('no_ktp');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('status');

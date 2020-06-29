@@ -42,6 +42,13 @@ class UserSeeder extends Seeder
                 'phone' => '0812312312321',
                 'password' => Hash::make('123456789'),
             ],
+            [
+                'name' => 'Ucup',
+                'user_role_id' => 5,
+                'email' => 'konsumen@konsumen.com',
+                'phone' => '081371823681',
+                'password' => Hash::make('123456789')
+            ]
             
         ]);
     }

@@ -16,6 +16,9 @@ class CreatePemeriksaanLokasisTable extends Migration
         Schema::create('t_pemeriksaan_lokasi', function (Blueprint $table) {
             $table->id();
             $table->integer('pemesanan_id');
+            $table->string('nama_pemilik');
+            $table->string('alamat_lokasi');
+            $table->string('luas_tanah');
             $table->integer('status');
             $table->softDeletes();
             $table->timestamps();

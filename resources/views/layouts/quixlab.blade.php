@@ -12,8 +12,6 @@
     <!-- Custom Stylesheet -->
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('quixlab/icons/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <script src="{{asset('js/tinymce/jquery.tinymce.min.js')}}"></script>
-    <script src="{{asset('js/tinymce/tinymce.min.js')}}"></script>
 </head>
 
 <body>
@@ -176,6 +174,9 @@
     <script src="{{asset('quixlab/js/custom.min.js')}}"></script>
     <script src="{{asset('quixlab/js/settings.js')}}"></script>
     <script src="{{asset('quixlab/js/gleek.js')}}"></script>
+    <script src="{{asset('js/tinymce/jquery.tinymce.min.js')}}"></script>
+    <script src="{{asset('js/tinymce/tinymce.min.js')}}"></script>
+
     {{-- <script src="{{asset('quixlab/js/styleSwitcher.js')}}"></script> --}}
     @stack('scripts')
 
