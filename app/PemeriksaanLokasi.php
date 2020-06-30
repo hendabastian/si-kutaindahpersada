@@ -15,6 +15,11 @@ class PemeriksaanLokasi extends Model
         return $this->hasOne(Pemesanan::class, 'id', 'pemesanan_id');
     }
 
+    public function getLokasiAttachment()
+    {
+        return $this->hasMany(PemeriksaanLokasiAttachment::class, 'pemeriksaan_lokasi_id', 'id');
+    }
+
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {

@@ -73,6 +73,54 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header border-bottom">
+                <h4>Data Pemeriksaan Lokasi</h4>
+            </div>
+            <div class="card-body">
+                @if ($model->getPemeriksaanLokasi->status == 1)
+                {{$model->getPemeriksaanLokasi->status_label}}
+                @else
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        @foreach ($model->getPemeriksaanLokasi->getLokasiAttachment as $index => $attachment)
+                        <img src="{{asset('uploads/' . $attachment->file)}}" alt="{{$attachment->deskripsi}}"
+                             width="100%">
+                        <hr>
+                        @endforeach
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <table class="table table-striped">
+                            <th colspan="2" class="text-center">Hasil Pemeriksaan Lokasi</th>
+                            <tr>
+                                <th>Nama Pemilik</th>
+                                <td>{{$model->getPemeriksaanLokasi->nama_pemilik}}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat Lokasi</th>
+                                <td>{{$model->getPemeriksaanLokasi->alamat_lokasi}}</td>
+                            </tr>
+                            <tr>
+                                <th>Luas Tanah</th>
+                                <td>{{$model->getPemeriksaanLokasi->luas_tanah}}</td>
+                            </tr>
+                            <tr>
+                                <th>Luas Bangunan</th>
+                                <td>{{$model->getPemeriksaanLokasi->luas_bangunan}}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{!! $model->getPemeriksaanLokasi->status_label !!}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="modalKtp">

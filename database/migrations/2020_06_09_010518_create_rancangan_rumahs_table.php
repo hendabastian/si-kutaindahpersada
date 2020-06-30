@@ -16,7 +16,7 @@ class CreateRancanganRumahsTable extends Migration
         Schema::create('t_rancangan_rumah', function (Blueprint $table) {
             $table->id();
             $table->integer('pemesanan_id');
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->integer('status');
             $table->softDeletes();
             $table->timestamps();

@@ -12,6 +12,7 @@
     <!-- Custom Stylesheet -->
     <link href="{{asset('quixlab/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('quixlab/icons/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    @stack('css')
 </head>
 
 <body>

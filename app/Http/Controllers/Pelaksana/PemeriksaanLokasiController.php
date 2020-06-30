@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Pelaksana;
 
 use App\Http\Controllers\Controller;
 use App\PemeriksaanLokasi;
+use App\PemeriksaanLokasiAttachment;
+use App\PemeriksaanLokasiVerifikasi;
 use App\Pemesanan;
+use App\PemesananVerifikasi;
+use App\RancanganRumah;
 use Illuminate\Http\Request;
 
 class PemeriksaanLokasiController extends Controller
@@ -36,5 +40,39 @@ class PemeriksaanLokasiController extends Controller
         $model->luas_bangunan = $request->input('luas_bangunan');
         $model->status = 2;
         $model->save();
+
+        $modelPemesanan = Pemesanan::findOrFail($model->pemesanan_id);
+        $modelPemesanan->status = 3;
+        $modelPemesanan->save();
+
+        $modelPemesananVerifikasi = new PemesananVerifikasi();
+        $modelPemesananVerifikasi->pemesanan_id = $model->pemesanan_id;
+        $modelPemesananVerifikasi->status = 3;
+        $modelPemesananVerifikasi->keterangan = $request->input('keterangan');
+        $modelPemesananVerifikasi->save();
+        
+        foreach ($request->file('file') as $index => $file) {
+            $uid[$index] = uniqid(time(), true);
+            $filename[$index] = $uid[$index] . '_file_.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/'), $filename[$index]);
+
+            $modelAttachment[$index] = new PemeriksaanLokasiAttachment();
+            $modelAttachment[$index]->pemeriksaan_lokasi_id = $model->id;
+            $modelAttachment[$index]->file = $filename[$index];
+            $modelAttachment[$index]->save();
+        }
+
+        $modelVerifikasi = new PemeriksaanLokasiVerifikasi();
+        $modelVerifikasi->pemeriksaan_lokasi_id = $model->id;
+        $modelVerifikasi->keterangan = $request->input('keterangan');
+        $modelVerifikasi->status = 2;
+        $modelVerifikasi->save();
+
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data Lokasi berhasil disimpan'
+        ]);
+        return redirect(route('pelaksana.pemeriksaan-lokasi.detail', ['id' => $model->id]));
     }
 }

@@ -133,4 +133,13 @@ Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->
     });
 });
 
+// Route Drafter
+Route::name('drafter.')->prefix('drafter')->middleware(['auth', 'role:2'])->group(function() {
+    Route::name('rancangan-rumah.')->prefix('rancangan-rumah')->group(function () {
+        Route::get('index', 'Drafter\RancanganRumahController@index')->name('index');
+        Route::get('detail/{id}', 'Drafter\RancanganRumahController@detail')->name('detail');
+        Route::post('upload-rancangan/{id}', 'Drafter\RancanganRumahController@uploadRancangan')->name('upload-rancangan');
+    });
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
