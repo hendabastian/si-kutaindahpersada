@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PemesananAttachment extends Model
 {
+    public $table = 't_pemesanan_attachment';
     use SoftDeletes;
 }

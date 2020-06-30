@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RABDetail extends Model
+class PemesananVerifikasi extends Model
 {
-    public $table = 't_rab_detail';
+    public $table = 't_pemesanan_verifikasi';
     use SoftDeletes;
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{$title . ' | ' . env('APP_NAME')}}</title>
+    <title>ERROR | {{$exception->getStatusCode()}}</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -133,15 +133,9 @@
             <!-- row -->
 
             <div class="container-fluid">
-                @if(Session::has('message'))
-                <div class="alert alert-{{Session::get('message.class')}} alert-dismissible fade show" role="alert">
-                    {{Session::get('message.body')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="alert alert-danger" role="alert">
+                    {{ $exception->getMessage() }}
                 </div>
-                @endif
-                @yield('content')
             </div>
             <!-- #/ container -->
         </div>

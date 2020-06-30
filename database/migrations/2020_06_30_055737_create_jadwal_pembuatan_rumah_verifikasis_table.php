@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKwitansiDetailsTable extends Migration
+class CreateJadwalPembuatanRumahVerifikasisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateKwitansiDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_kwitansi_detail', function (Blueprint $table) {
+        Schema::create('t_jadwal_pembuatan_rumah_verifikasi', function (Blueprint $table) {
             $table->id();
-            $table->integer('kwitansi_id');
-            $table->text('deskripsi');
-            $table->integer('harga');
+            $table->integer('jadwal_pembuatan_rumah_id');
+            $table->integer('status');
+            $table->string('keterangan')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateKwitansiDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_kwitansi_detail');
+        Schema::dropIfExists('t_jadwal_pembuatan_rumah_verifikasi');
     }
 }

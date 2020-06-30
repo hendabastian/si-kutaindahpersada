@@ -10,5 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class RAP extends Model
 {
+    public $table = 't_rap';
     use SoftDeletes;
 }

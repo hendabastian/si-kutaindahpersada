@@ -14,7 +14,7 @@
     @method('delete')
 </form>
 <hr>
-<h4>{{$title}}</h4>
+<h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
 <div class="row justify-content-center">
     <div class="col-sm-12">
@@ -40,7 +40,7 @@
                         <th>File KTP</th>
                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
                                     data-target="#modalKtp">
-                                    <i class="fa fa-search"></i> Preview
+                                <i class="fa fa-search"></i> Preview
                             </button></td>
                     </tr>
                 </table>
@@ -71,6 +71,9 @@
                         <td>{{$model->alamat_proyek}}</td>
                     </tr>
                 </table>
+                <h5>Deskripsi Pekerjaan:</h5>
+                <hr>
+                {!!$model->deskripsi!!}
             </div>
         </div>
     </div>

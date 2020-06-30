@@ -25,7 +25,7 @@
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <label for="file_ktp">File KTP</label>
-                                <input type="file" name="file_ktp" id="file_ktp" class="form-control">
+                                <input type="file" name="file_ktp" id="file_ktp" class="form-control" accept="image/*">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-12">

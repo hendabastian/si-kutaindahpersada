@@ -36,7 +36,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
         Route::delete('delete/{id}', 'Admin\InformasiPembangunanRumahController@delete')->name('delete');
     });
 
-    Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function () {
+    Route::name('brosur.')->prefix('brosur')->group(function () {
         Route::get('index', 'Admin\BrosurController@index')->name('index');
         Route::get('detail/{id}', 'Admin\BrosurController@detail')->name('detail');
         Route::get('create', 'Admin\BrosurController@create')->name('create');
@@ -45,13 +45,34 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
         Route::delete('delete/{id}', 'Admin\BrosurController@delete')->name('delete');
     });
 
-    Route::name('pemesanan.')->prefix('pemesanan')->middleware('auth')->group(function () {
+    Route::name('pemesanan.')->prefix('pemesanan')->group(function () {
         Route::get('index', 'Admin\PemesananController@index')->name('index');
         Route::get('detail/{id}', 'Admin\PemesananController@detail')->name('detail');
         Route::match(['get', 'post'], 'create', 'Admin\PemesananController@create')->name('create');
         Route::match(['get', 'put'], 'edit/{id}', 'Admin\PemesananController@edit')->name('edit');
         Route::delete('delete/{id}', 'Admin\PemesananController@delete')->name('delete');
+        Route::post('proses/{id}', 'Admin\PemesananController@proses')->name('proses');
     });
+
+    Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {
+        Route::get('index', 'Admin\PemeriksaanLokasiController@index')->name('index');
+        Route::get('detail/{id}', 'Admin\PemeriksaanLokasiController@detail')->name('detail');
+        Route::match(['get, put'], 'edit/{id}', 'Admin\PemeriksaanLokasiController@edit')->name('edit');
+        Route::delete('delete/{id}', 'Admin\PemeriksaanLokasiController@delete')->name('delete');
+    });
+
+    Route::name('surat-perintah-kerja.')->prefix('surat-perintah-kerja')->group(function () {
+        Route::get('index', function () {
+            return 'test';
+        })->name('index');
+    });
+
+    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function() {
+        Route::get('index', function() {
+            return 'test';
+        })->name('index');
+    });
+
 });
 
 
@@ -66,7 +87,7 @@ Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->gr
         Route::delete('delete/{id}', 'Konsumen\InformasiPembangunanRumahController@delete')->name('delete');
     });
 
-    Route::name('brosur.')->prefix('brosur')->middleware('auth')->group(function () {
+    Route::name('brosur.')->prefix('brosur')->group(function () {
         Route::get('index', 'Konsumen\BrosurController@index')->name('index');
         Route::get('detail/{id}', 'Konsumen\BrosurController@detail')->name('detail');
         Route::get('create', 'Konsumen\BrosurController@create')->name('create');
@@ -75,12 +96,40 @@ Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->gr
         Route::delete('delete/{id}', 'Konsumen\BrosurController@delete')->name('delete');
     });
 
-    Route::name('pemesanan.')->prefix('pemesanan')->middleware('auth')->group(function () {
+    Route::name('pemesanan.')->prefix('pemesanan')->group(function () {
         Route::get('index', 'Konsumen\PemesananController@index')->name('index');
         Route::get('detail/{id}', 'Konsumen\PemesananController@detail')->name('detail');
         Route::match(['get', 'post'], 'create', 'Konsumen\PemesananController@create')->name('create');
         Route::match(['get', 'put'], 'edit/{id}', 'Konsumen\PemesananController@edit')->name('edit');
         Route::delete('delete/{id}', 'Konsumen\PemesananController@delete')->name('delete');
+    });
+
+    Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {
+        Route::get('index', function () {
+            return 'test';
+        })->name('index');
+    });
+
+
+    Route::name('surat-perintah-kerja.')->prefix('surat-perintah-kerja')->group(function () {
+        Route::get('index', function () {
+            return 'test';
+        })->name('index');
+    });
+
+    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function() {
+        Route::get('index', function() {
+            return 'test';
+        })->name('index');
+    });
+});
+
+// Route Pelaksana
+Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->group(function() {
+    Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function() {
+        Route::get('index', 'Pelaksana\PemeriksaanLokasiController@index')->name('index');
+        Route::get('detail/{id}', 'Pelaksana\PemeriksaanLokasiController@detail')->name('detail');
+        Route::post('proses-lokasi/{id}', 'Pelaksana\PemeriksaanLokasiController@prosesLokasi')->name('proses-lokasi');
     });
 });
 

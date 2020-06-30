@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\PemeriksaanLokasi;
 use App\Pemesanan;
+use App\PemesananVerifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,7 +70,7 @@ class PemesananController extends Controller
                 'class' => 'success',
                 'body' => 'Data pemesanan berhasil dirubah'
             ]);
-            return redirect(route('pemesanan.detail', ['id' => $model->id]));
+            return redirect(route('admin.pemesanan.detail', ['id' => $model->id]));
         } else {
             $uid = date('d') . substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2) . date('m') . substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 2);
             return view('modules.Admin.Pemesanan.create', [
@@ -77,5 +79,31 @@ class PemesananController extends Controller
                 'title' => 'Edit Pemesanan: ' . $model->no_pemesanan
             ]);
         }
+    }
+
+    public function proses($id, Request $request)
+    {
+        $model = Pemesanan::findOrFail($id);
+        $model->status = $request->input('status');
+        $model->save();
+
+        if ($request->input('status') == 2) {
+            $modelLokasi = new PemeriksaanLokasi();
+            $modelLokasi->pemesanan_id = $model->id;
+            $modelLokasi->status = 1;
+            $modelLokasi->save();
+        }
+
+        $modelVerifikasi = new PemesananVerifikasi();
+        $modelVerifikasi->pemesanan_id = $model->id;
+        $modelVerifikasi->status = $request->input('status');
+        $modelVerifikasi->keterangan = $request->input('keterangan');
+        $modelVerifikasi->save();
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data Pemesanan berhasil diproses'
+        ]);
+        return redirect(route('admin.pemesanan.detail', ['id' => $id]));
     }
 }

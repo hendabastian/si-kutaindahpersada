@@ -3,8 +3,14 @@
 @section('content')
 <a href="{{route('admin.pemesanan.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+@if($model->status == 1)
+<button type="button" class="btn btn-info" data-toggle="modal"
+        data-target="#modalProses">
+    <i class="fa fa-check"></i> Proses Pesanan
+</button></td>
+@endif
 <hr>
-<h4>{{$title}}</h4>
+<h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
 <div class="row justify-content-center">
     <div class="col-sm-12">
@@ -30,7 +36,7 @@
                         <th>File KTP</th>
                         <td><button type="button" class="btn btn-primary btn-xs" data-toggle="modal"
                                     data-target="#modalKtp">
-                                    <i class="fa fa-search"></i> Preview
+                                <i class="fa fa-search"></i> Preview
                             </button></td>
                     </tr>
                 </table>
@@ -61,6 +67,9 @@
                         <td>{{$model->alamat_proyek}}</td>
                     </tr>
                 </table>
+                <h5>Deskripsi Pekerjaan:</h5>
+                <hr>
+                {!!$model->deskripsi!!}
             </div>
         </div>
     </div>
@@ -72,13 +81,54 @@
             <div class="modal-header">
                 <h5 class="modal-title">File KTP</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">x</span>
+                    <i class="fa fa-close"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <img src="{{asset('uploads/' . $model->file_ktp)}}" alt="" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalProses">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Proses Pesanan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('admin.pemesanan.proses', ['id' => $model->id])}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="status" id="statusApprove" value="2" class="form-check-input"
+                                   required>
+                            <label for="statusApprove" class="form-check-label">Lanjut Pemeriksaan Lokasi</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="status" id="statusTolak" value="0" class="form-check-input"
+                                   required>
+                            <label for="statusTolak" class="form-check-label">Tolak Pemesanan</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan" cols="20" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Proses Pesanan</button>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-12">
                     </div>
                 </div>
             </div>
