@@ -131,6 +131,14 @@ Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->
         Route::get('detail/{id}', 'Pelaksana\PemeriksaanLokasiController@detail')->name('detail');
         Route::post('proses-lokasi/{id}', 'Pelaksana\PemeriksaanLokasiController@prosesLokasi')->name('proses-lokasi');
     });
+
+    Route::name('rab.')->prefix('rab')->group(function () {
+        Route::get('index', 'Pelaksana\RABController@index')->name('index');
+        Route::get('detail/{id}', 'Pelaksana\RABController@detail')->name('detail');
+        Route::get('create/{pemesanan_id}', 'Pelaksana\RABController@create')->name('create');
+        Route::post('save-barang/{rab_id}', 'Pelaksana\RABController@saveBarang')->name('save-barang');
+        Route::post('save-rab/{rab_id}', 'Pelaksana\RABController@saveRAB')->name('save-rab');
+    });
 });
 
 // Route Drafter

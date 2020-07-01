@@ -11,7 +11,7 @@
                 <a href="{{route('konsumen.brosur.create')}}" class="btn btn-primary">Tambah
                     Brosur</a>
                 <hr>
-                @if(!empty($model))
+                @if($model->isNotEmpty())
                 <table class="table table-striped">
                     <thead>
                         <th>Judul</th>

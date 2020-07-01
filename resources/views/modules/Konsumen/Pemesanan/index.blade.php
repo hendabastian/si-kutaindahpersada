@@ -11,7 +11,7 @@
                 <a href="{{route('konsumen.pemesanan.create')}}" class="btn btn-primary">Tambah
                     Pemesanan</a>
                 <hr>
-                @if(!empty($model))
+                @if($model->isNotEmpty())
                 <table class="table table-striped">
                     <thead>
                         <th>No. Pemesanan</th>

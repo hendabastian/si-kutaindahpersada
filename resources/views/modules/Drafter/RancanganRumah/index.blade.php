@@ -8,7 +8,7 @@
                 <h4>Pemesanan</h4>
             </div>
             <div class="card-body">
-                @if(!empty($model))
+                @if($model->isNotEmpty())
                 <table class="table table-striped">
                     <thead>
                         <th>No. Pemesanan</th>

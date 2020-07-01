@@ -5,7 +5,7 @@
     <div class="col-sm-12 col-md-12">
         <div class="card">
             <div class="card-header border-bottom">
-                <h4>Pemeriksaan Lokasi</h4>
+                <h4>{{$title}}</h4>
             </div>
             <div class="card-body">
                 @if ($model->isNotEmpty())
@@ -19,11 +19,11 @@
                     <tbody>
                         @foreach ($model as $index => $data)
                         <tr>
-                            <td>{{$data->getPemesanan->no_pemesanan}}</td>
-                            <td>{{$data->getPemesanan->alamat_proyek}}</td>
+                            <td>{{$data->no_pemesanan}}</td>
+                            <td>{{$data->alamat_proyek}}</td>
                             <td>{!! $data->status_label !!}</td>
                             <td>
-                                <a href="{{route('pelaksana.pemeriksaan-lokasi.detail', ['id' => $data->id])}}"
+                                <a href="{{route('pelaksana.rab.detail', ['id' => $data->id])}}"
                                    class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Detail</a>
                             </td>
                         </tr>

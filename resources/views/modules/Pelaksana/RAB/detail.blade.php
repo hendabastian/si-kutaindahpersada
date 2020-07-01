@@ -1,13 +1,82 @@
 @extends('layouts.quixlab')
 
 @section('content')
-<a href="{{route('drafter.rancangan-rumah.index')}}"
+<a href="{{route('pelaksana.rab.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-
+@if ($model->status == 4)
+<a href="{{route('pelaksana.rab.create', ['pemesanan_id' => $model->id])}}"
+   class="btn btn-info"><i class="fa fa-money"></i> Buat Rencana Anggaran Biaya</a>
+@endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
 <div class="row justify-content-center">
+    @if ($model->status > 4)
+    @php
+    $no = 1;
+    @endphp
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header border-bottom align-middle">
+                <h4 class="float-left">Rencana Anggaran Biaya</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <th>No</th>
+                        <th>Uraian</th>
+                        <th>Satuan</th>
+                        <th>Volume</th>
+                        <th>Harga Satuan</th>
+                        <th>Deskripsi</th>
+                    </thead>
+                    <tbody>
+                        @foreach($model->getRAB->getDetail as $index => $item)
+                        <tr>
+                            <td>{{$no++}}</td>
+                            <td>{{$item->uraian}}</td>
+                            <td>{{$item->satuan}}</td>
+                            <td>{{number_format($item->volume)}}</td>
+                            <td>{{number_format($item->harga_satuan)}}</td>
+                            <td>{{$item->deskripsi}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @endif
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header border-bottom align-middle">
+                <h4 class="float-left">Informasi Pembangunan</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Tipe Bangunan</th>
+                        <td>{{$model->tipe_bangunan}}</td>
+                    </tr>
+                    <tr>
+                        <th>Luas Tanah</th>
+                        <td>{{$model->luas_tanah}}</td>
+                    </tr>
+                    <tr>
+                        <th>Luas Bangunan</th>
+                        <td>{{$model->luas_bangunan}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alamat Proyek</th>
+                        <td>{{$model->alamat_proyek}}</td>
+                    </tr>
+                </table>
+                <h5>Deskripsi Pekerjaan:</h5>
+                <hr>
+                {!!$model->deskripsi!!}
+            </div>
+        </div>
+    </div>
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header border-bottom">
@@ -58,36 +127,6 @@
                             </button></td>
                     </tr>
                 </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header border-bottom align-middle">
-                <h4 class="float-left">Informasi Pembangunan</h4>
-            </div>
-            <div class="card-body">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Tipe Bangunan</th>
-                        <td>{{$model->tipe_bangunan}}</td>
-                    </tr>
-                    <tr>
-                        <th>Luas Tanah</th>
-                        <td>{{$model->luas_tanah}}</td>
-                    </tr>
-                    <tr>
-                        <th>Luas Bangunan</th>
-                        <td>{{$model->luas_bangunan}}</td>
-                    </tr>
-                    <tr>
-                        <th>Alamat Proyek</th>
-                        <td>{{$model->alamat_proyek}}</td>
-                    </tr>
-                </table>
-                <h5>Deskripsi Pekerjaan:</h5>
-                <hr>
-                {!!$model->deskripsi!!}
             </div>
         </div>
     </div>

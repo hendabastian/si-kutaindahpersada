@@ -16,10 +16,10 @@ class CreateRABDetailsTable extends Migration
         Schema::create('t_rab_detail', function (Blueprint $table) {
             $table->id();
             $table->integer('rab_id');
-            $table->string('uraian');
+            $table->string('name');
             $table->text('deskripsi')->nullable();
-            $table->string('satuan');
-            $table->integer('volume');
+            $table->string('satuan')->after('deskripsi');
+            $table->string('volume')->after('satuan');
             $table->integer('harga_satuan');
             $table->softDeletes();
             $table->timestamps();

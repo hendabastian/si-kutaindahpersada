@@ -7,6 +7,11 @@
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Pemeriksaan Lokasi</span>
                 </a>
             </li>
+            <li class="{{(Request::is('pelaksana/rab/*')) ? 'active' : ''}}">
+                <a href="{{route('pelaksana.rab.index')}}" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Rencana Anggaran Biaya</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

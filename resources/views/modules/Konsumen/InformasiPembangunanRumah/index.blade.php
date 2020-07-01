@@ -11,7 +11,7 @@
                 <a href="{{route('konsumen.info-pembangunan-rumah.create')}}" class="btn btn-primary">Tambah Informasi
                     Pembangunan Rumah</a>
                 <hr>
-                @if(!empty($model))
+                @if($model->isNotEmpty())
                 <table class="table table-striped">
                     <thead>
                         <th>Deskripsi</th>
