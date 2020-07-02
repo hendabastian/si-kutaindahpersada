@@ -26,7 +26,8 @@ class RABController extends Controller
         $model = Pemesanan::findOrFail($id);
         return view('modules.Pelaksana.RAB.detail', [
             'model' => $model,
-            'title' => 'RAB: ' . $model->no_pemesanan
+            'title' => 'RAB: ' . $model->no_pemesanan,
+            'total' => 0
         ]);
     }
 
@@ -42,16 +43,17 @@ class RABController extends Controller
             $modelRAB->status = 1;
             $modelRAB->save();
 
-            $modelRAB = new RABVerifikasi();
-            $modelRAB->rab_id = $modelRAB->id;
-            $modelRAB->status = 1;
-            $modelRAB->save();
+            $modelRABVerifikasi = new RABVerifikasi();
+            $modelRABVerifikasi->rab_id = $modelRAB->id;
+            $modelRABVerifikasi->status = 1;
+            $modelRABVerifikasi->save();
         }
 
         return view('modules.Pelaksana.RAB.create', [
             'title' => 'Buat RAB: ' . $getRAB->getPemesanan->no_pemesanan,
             'getRAB' => $getRAB,
-            'no' => 1
+            'no' => 1,
+            'total' => 0
         ]);
     }
 

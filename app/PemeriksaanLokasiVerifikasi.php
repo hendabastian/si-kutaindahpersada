@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PemeriksaanLokasiVerifikasi extends Model
 {
-    public $table = 't_pemeriksaan_lokasi';
+    public $table = 't_pemeriksaan_lokasi_verifikasi';
     use SoftDeletes;
 }

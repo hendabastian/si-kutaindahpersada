@@ -38,10 +38,11 @@ class BrosurController extends Controller
             $model->luas_tanah = $request->input('luas_tanah');
             $model->luas_bangunan = $request->input('luas_bangunan');
             $model->deskripsi = $request->input('deskripsi');
+            $model->save();
             if ($request->hasFile('file')) {
                 foreach ($request->file('file') as $index => $data) {
                     $uid[$index] = uniqid(time(), true);
-                    $fileName[$index] = $uid[$index] . '_info_.' . $data->getClientOriginalExtension();
+                    $fileName[$index] = $uid[$index] . '_brosur_.' . $data->getClientOriginalExtension();
                     $data->move(public_path('uploads/'), $fileName[$index]);
 
                     $modelDetail[$index] = new DetailBrosur();
@@ -50,7 +51,6 @@ class BrosurController extends Controller
                     $modelDetail[$index]->save();
                 }
             }
-            $model->save();
             $request->session()->flash('message', [
                 'body' => 'Data berhasil disimpan',
                 'class' => 'success'

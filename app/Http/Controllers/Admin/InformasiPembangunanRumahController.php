@@ -35,7 +35,7 @@ class InformasiPembangunanRumahController extends Controller
                 'body' => 'Data berhasil disimpan',
                 'class' => 'success'
             ]);
-            return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
+            return redirect(route('admin.info-pembangunan-rumah.detail', ['id' => $model->id]));
         }
         return view('modules.Admin.InformasiPembangunanRumah.create', [
             'title' => 'Tambah Info Pembangunan Rumah'
@@ -68,7 +68,7 @@ class InformasiPembangunanRumahController extends Controller
                 'body' => 'Data berhasil disimpan',
                 'class' => 'success'
             ]);
-            return redirect(route('info-pembangunan-rumah.detail', ['id' => $model->id]));
+            return redirect(route('admin.info-pembangunan-rumah.detail', ['id' => $model->id]));
         }
         return view('modules.Admin.InformasiPembangunanRumah.edit', [
             'model' => $model,
@@ -83,6 +83,6 @@ class InformasiPembangunanRumahController extends Controller
             'body' => 'Data Berhasil dihapus',
             'class' => 'success'
         ]);
-        return redirect(route('info-pembangunan-rumah.index'));
+        return redirect(route('admin.info-pembangunan-rumah.index'));
     }
 }

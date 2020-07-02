@@ -397,6 +397,28 @@
                                 @else
                                 <h4>TIdak ada Gambar</h4>
                                 @endif
+                                <table class="table">
+                                    <tr>
+                                        <th>Model</th>
+                                        <td>{{$itemBrosur->model}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Harga</th>
+                                        <td>Rp. {{number_format($itemBrosur->harga)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Lama Pembangunan</th>
+                                        <td>{{$itemBrosur->lama_pembangunan}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Luas Tanah</th>
+                                        <td>{{$itemBrosur->luas_tanah}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Luas Bangunan</th>
+                                        <td>{{$itemBrosur->luas_bangunan}}</td>
+                                    </tr>
+                                </table>
                                 <p>{!! $itemBrosur->deskripsi !!}</p>
                                 <ul class="list-inline">
                                     <li>Date: {{$itemBrosur->created_at}}</li>

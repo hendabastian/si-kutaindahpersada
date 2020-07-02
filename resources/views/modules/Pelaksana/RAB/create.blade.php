@@ -53,35 +53,56 @@
                 @if($getRAB->getDetail->isEmpty())
                 <h4>Belum ada Rincian</h4>
                 @else
-                <table class="table table-striped">
+                <table class="table table-striped table-bordered">
                     <thead>
                         <th>No</th>
                         <th>Uraian</th>
                         <th>Satuan</th>
                         <th>Volume</th>
-                        <th>harga Satuan</th>
+                        <th>Harga Satuan</th>
+                        <th>Total Harga</th>
                         <th>Deskripsi</th>
                     </thead>
                     <tbody>
                         @foreach($getRAB->getDetail as $index => $item)
+                        @php
+                        $total += ($item->volume * $item->harga_satuan);
+                        @endphp
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$item->uraian}}</td>
                             <td>{{$item->satuan}}</td>
                             <td>{{number_format($item->volume)}}</td>
                             <td>{{number_format($item->harga_satuan)}}</td>
+                            <td>{{number_format($item->volume * $item->harga_satuan)}}</td>
                             <td>{{$item->deskripsi}}</td>
                         </tr>
+
                         @endforeach
+                        <tr>
+                            <th colspan="5" class="text-right">Subtotal</th>
+                            <td colspan="2">{{number_format($total)}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="5" class="text-right">PPH 4%</th>
+                            <td colspan="2">{{number_format($total * 0.04)}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="5" class="text-right">Jumlah (incl. PPH)</th>
+                            <td colspan="2">{{number_format($total + ($total * 0.04))}}</td>
+                        </tr>
                     </tbody>
                 </table>
                 @endif
             </div>
             <div class="card-footer">
-                <form action="{{route('pelaksana.rab.save-rab', ['rab_id' => $getRAB->id])}}" method="post" name="form-save-rab"
+                <form action="{{route('pelaksana.rab.save-rab', ['rab_id' => $getRAB->id])}}" method="post"
+                      name="form-save-rab"
                       id="form-save-rab">
                     @csrf
-                    <button type="submit" class="btn btn-success" form="form-save-rab" onclick="return confirm('Pastikan data yang diinput sudah benar-benar sesuai')"><i class="fa fa-save"></i> Simpan RAB & Ajukan ke Direktur</button>
+                    <button type="submit" class="btn btn-success" form="form-save-rab"
+                            onclick="return confirm('Pastikan data yang diinput sudah benar-benar sesuai')"><i
+                           class="fa fa-save"></i> Simpan RAB & Ajukan ke Direktur</button>
                 </form>
             </div>
         </div>

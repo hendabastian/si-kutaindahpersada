@@ -67,12 +67,11 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
         })->name('index');
     });
 
-    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function() {
-        Route::get('index', function() {
+    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function () {
+        Route::get('index', function () {
             return 'test';
         })->name('index');
     });
-
 });
 
 
@@ -117,16 +116,16 @@ Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->gr
         })->name('index');
     });
 
-    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function() {
-        Route::get('index', function() {
+    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function () {
+        Route::get('index', function () {
             return 'test';
         })->name('index');
     });
 });
 
 // Route Pelaksana
-Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->group(function() {
-    Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function() {
+Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->group(function () {
+    Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {
         Route::get('index', 'Pelaksana\PemeriksaanLokasiController@index')->name('index');
         Route::get('detail/{id}', 'Pelaksana\PemeriksaanLokasiController@detail')->name('detail');
         Route::post('proses-lokasi/{id}', 'Pelaksana\PemeriksaanLokasiController@prosesLokasi')->name('proses-lokasi');
@@ -142,11 +141,20 @@ Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->
 });
 
 // Route Drafter
-Route::name('drafter.')->prefix('drafter')->middleware(['auth', 'role:2'])->group(function() {
+Route::name('drafter.')->prefix('drafter')->middleware(['auth', 'role:2'])->group(function () {
     Route::name('rancangan-rumah.')->prefix('rancangan-rumah')->group(function () {
         Route::get('index', 'Drafter\RancanganRumahController@index')->name('index');
         Route::get('detail/{id}', 'Drafter\RancanganRumahController@detail')->name('detail');
         Route::post('upload-rancangan/{id}', 'Drafter\RancanganRumahController@uploadRancangan')->name('upload-rancangan');
+    });
+});
+
+// Route Direktur
+Route::name('direktur.')->prefix('direktur')->middleware(['auth', 'role:4'])->group(function () {
+    Route::name('rab.')->prefix('rab')->group(function () {
+        Route::get('index', 'Direktur\RABController@index')->name('index');
+        Route::get('detail/{id}', 'Direktur\RABController@detail')->name('detail');
+        Route::post('approve/{id}', 'Direktur\RABController@approve')->name('approve');
     });
 });
 

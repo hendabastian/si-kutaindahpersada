@@ -15,7 +15,7 @@
                 <table class="table table-striped">
                     <thead>
                         <th>Judul</th>
-                        <th>Deskripsi</th>
+                        <th>Model</th>
                         <th style="width: 220px;">Aksi</th>
                     </thead>
                     <tbody>
@@ -24,7 +24,7 @@
                         <tr>
                             <td>{{$data->judul}}</td>
                             <td>
-                                {!! html_entity_decode($data->deskripsi) !!}
+                                {{$data->model}}
                             </td>
                             <td>
                                 <form action="{{route('admin.brosur.delete',  ['id' => $data->id])}}"

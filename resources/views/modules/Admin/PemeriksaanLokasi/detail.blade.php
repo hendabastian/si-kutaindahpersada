@@ -43,6 +43,41 @@
                 <div class="text-center">
                     {!! $model->status_label !!}
                 </div>
+                @else
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        @foreach ($model->getLokasiAttachment as $index => $attachment)
+                        <img src="{{asset('uploads/' . $attachment->file)}}" alt="{{$attachment->deskripsi}}"
+                             width="100%">
+                        <hr>
+                        @endforeach
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <table class="table table-striped">
+                            <th colspan="2" class="text-center">Hasil Pemeriksaan Lokasi</th>
+                            <tr>
+                                <th>Nama Pemilik</th>
+                                <td>{{$model->nama_pemilik}}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat Lokasi</th>
+                                <td>{{$model->alamat_lokasi}}</td>
+                            </tr>
+                            <tr>
+                                <th>Luas Tanah</th>
+                                <td>{{$model->luas_tanah}}</td>
+                            </tr>
+                            <tr>
+                                <th>Luas Bangunan</th>
+                                <td>{{$model->luas_bangunan}}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{!! $model->status_label !!}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>

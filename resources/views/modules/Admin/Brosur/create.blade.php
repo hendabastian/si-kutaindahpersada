@@ -45,7 +45,7 @@
                                 <input type="text" name="luas_bangunan" id="luas_bangunan" class="form-control">
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
                         <input type="textarea" name="deskripsi" id="deskripsi" class="form-control">
