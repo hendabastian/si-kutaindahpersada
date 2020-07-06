@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\JadwalPembuatanRumah;
 use App\PemeriksaanLokasi;
 use App\Pemesanan;
 use App\PemesananVerifikasi;
@@ -82,6 +83,32 @@ class PemesananController extends Controller
     }
 
     public function proses($id, Request $request)
+    {
+        $model = Pemesanan::findOrFail($id);
+        $model->status = $request->input('status');
+        $model->save();
+
+        if ($request->input('status') == 2) {
+            $modelLokasi = new PemeriksaanLokasi();
+            $modelLokasi->pemesanan_id = $model->id;
+            $modelLokasi->status = 1;
+            $modelLokasi->save();
+        }
+
+        $modelVerifikasi = new PemesananVerifikasi();
+        $modelVerifikasi->pemesanan_id = $model->id;
+        $modelVerifikasi->status = $request->input('status');
+        $modelVerifikasi->keterangan = $request->input('keterangan');
+        $modelVerifikasi->save();
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data Pemesanan berhasil diproses'
+        ]);
+        return redirect(route('admin.pemesanan.detail', ['id' => $id]));
+    }
+
+    public function prosesRap($id, Request $request)
     {
         $model = Pemesanan::findOrFail($id);
         $model->status = $request->input('status');

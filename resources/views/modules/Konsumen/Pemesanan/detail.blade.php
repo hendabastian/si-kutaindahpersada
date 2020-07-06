@@ -1,6 +1,7 @@
 @extends('layouts.quixlab')
 
 @section('content')
+@if($model->status == 1 || $model->status ==0 )
 <a href="{{route('konsumen.pemesanan.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
 <a href="{{route('konsumen.pemesanan.edit', ['id' => $model->id])}}"
@@ -13,6 +14,12 @@
     @csrf
     @method('delete')
 </form>
+@elseif($model->status == 7)
+<button type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#modalSetTanggal">
+    <i class="fa fa-calendar"></i> Tentukan Tanggal Mulai Pekerjaan
+</button>
+@endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
@@ -98,6 +105,36 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modalSetTanggal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tentukan Tanggal Mulai Pekerjaan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('konsumen.pemesanan.tanggal-mulai', ['id' => $model->id])}}"
+                      method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Mulai Pekerjaan</label>
+                        <input type="date" name="tanggal" id="tanggal" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan" cols="30" rows="4" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Simpan Tanggal Mulai </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')

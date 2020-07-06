@@ -9,6 +9,12 @@
     <i class="fa fa-check"></i> Proses Pesanan
 </button></td>
 @endif
+@if($model->status == 6)
+<button type="button" class="btn btn-info" data-toggle="modal"
+        data-target="#modalRap">
+    <i class="fa fa-check"></i> Proses RAP
+</button></td>
+@endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
@@ -82,45 +88,45 @@
             <div class="card-body">
                 @if ($model->getPemeriksaanLokasi->status == 1)
                 {{$model->getPemeriksaanLokasi->status_label}}
-                @else
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        @foreach ($model->getPemeriksaanLokasi->getLokasiAttachment as $index => $attachment)
-                        <img src="{{asset('uploads/' . $attachment->file)}}" alt="{{$attachment->deskripsi}}"
-                             width="100%">
-                        <hr>
-                        @endforeach
-                    </div>
-                    <div class="col-sm-12 col-md-8">
-                        <table class="table table-striped">
-                            <th colspan="2" class="text-center">Hasil Pemeriksaan Lokasi</th>
-                            <tr>
-                                <th>Nama Pemilik</th>
-                                <td>{{$model->getPemeriksaanLokasi->nama_pemilik}}</td>
-                            </tr>
-                            <tr>
-                                <th>Alamat Lokasi</th>
-                                <td>{{$model->getPemeriksaanLokasi->alamat_lokasi}}</td>
-                            </tr>
-                            <tr>
-                                <th>Luas Tanah</th>
-                                <td>{{$model->getPemeriksaanLokasi->luas_tanah}}</td>
-                            </tr>
-                            <tr>
-                                <th>Luas Bangunan</th>
-                                <td>{{$model->getPemeriksaanLokasi->luas_bangunan}}</td>
-                            </tr>
-                            <tr>
-                                <th>Status</th>
-                                <td>{!! $model->getPemeriksaanLokasi->status_label !!}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                @endif
-            </div>
+    @else
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            @foreach ($model->getPemeriksaanLokasi->getLokasiAttachment as $index => $attachment)
+            <img src="{{asset('uploads/' . $attachment->file)}}" alt="{{$attachment->deskripsi}}"
+                 width="100%">
+            <hr>
+            @endforeach
         </div>
-    </div> --}}
+        <div class="col-sm-12 col-md-8">
+            <table class="table table-striped">
+                <th colspan="2" class="text-center">Hasil Pemeriksaan Lokasi</th>
+                <tr>
+                    <th>Nama Pemilik</th>
+                    <td>{{$model->getPemeriksaanLokasi->nama_pemilik}}</td>
+                </tr>
+                <tr>
+                    <th>Alamat Lokasi</th>
+                    <td>{{$model->getPemeriksaanLokasi->alamat_lokasi}}</td>
+                </tr>
+                <tr>
+                    <th>Luas Tanah</th>
+                    <td>{{$model->getPemeriksaanLokasi->luas_tanah}}</td>
+                </tr>
+                <tr>
+                    <th>Luas Bangunan</th>
+                    <td>{{$model->getPemeriksaanLokasi->luas_bangunan}}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{!! $model->getPemeriksaanLokasi->status_label !!}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    @endif
+</div>
+</div>
+</div> --}}
 </div>
 
 <div class="modal fade" id="modalKtp">
@@ -143,6 +149,7 @@
     </div>
 </div>
 
+@if($model->status == 1)
 <div class="modal fade" id="modalProses">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -183,6 +190,49 @@
         </div>
     </div>
 </div>
+@endif
+@if($model->status == 6)
+<div class="modal fade" id="modalRap">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Proses RAP Pesanan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('admin.pemesanan.proses', ['id' => $model->id])}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="status" id="statusApprove" value="7" class="form-check-input"
+                                   required>
+                            <label for="statusApprove" class="form-check-label">Lanjut RAP Ke Konsumen</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" name="status" id="statusTolak" value="0" class="form-check-input"
+                                   required>
+                            <label for="statusTolak" class="form-check-label">Tolak Pemesanan</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan" cols="20" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Proses Pesanan</button>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 @endsection
 
 @push('scripts')

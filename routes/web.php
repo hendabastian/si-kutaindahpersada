@@ -52,6 +52,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
         Route::match(['get', 'put'], 'edit/{id}', 'Admin\PemesananController@edit')->name('edit');
         Route::delete('delete/{id}', 'Admin\PemesananController@delete')->name('delete');
         Route::post('proses/{id}', 'Admin\PemesananController@proses')->name('proses');
+        Route::post('proses-rap/{id}', 'Admin\PemesananController@prosesRap')->name('proses-rap');
     });
 
     Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {
@@ -101,6 +102,7 @@ Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->gr
         Route::match(['get', 'post'], 'create', 'Konsumen\PemesananController@create')->name('create');
         Route::match(['get', 'put'], 'edit/{id}', 'Konsumen\PemesananController@edit')->name('edit');
         Route::delete('delete/{id}', 'Konsumen\PemesananController@delete')->name('delete');
+        Route::post('tanggal-mulai/{id}', 'Konsumen\PemesananController@tanggalMulai')->name('tanggal-mulai');
     });
 
     Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Konsumen;
 
 use App\Http\Controllers\Controller;
+use App\JadwalPembuatanRumah;
 use App\Pemesanan;
+use App\PemesananVerifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -126,5 +128,32 @@ class PemesananController extends Controller
             'body' => 'Data Pemesanan Berhasil dihapus'
         ]);
         return redirect(route('konsumen.pemesanan.index'));
+    }
+
+    public function tanggalMulai($id, Request $request)
+    {
+        $model = Pemesanan::findOrFail($id);
+        $model->status = 8;
+        $model->save();
+
+
+        $modelTanggal = new JadwalPembuatanRumah();
+        $modelTanggal->pemesanan_id = $model->id;
+        $modelTanggal->tgl_mulai = date('Y-m-d', strtotime($request->input('tanggal')));
+        $modelTanggal->status = 1;
+        $modelTanggal->save();
+
+
+        $modelVerifikasi = new PemesananVerifikasi();
+        $modelVerifikasi->pemesanan_id = $model->id;
+        $modelVerifikasi->status = 8;
+        $modelVerifikasi->keterangan = $request->input('keterangan');
+        $modelVerifikasi->save();
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data Pemesanan berhasil diproses'
+        ]);
+        return redirect(route('konsumen.pemesanan.detail', ['id' => $id]));
     }
 }
