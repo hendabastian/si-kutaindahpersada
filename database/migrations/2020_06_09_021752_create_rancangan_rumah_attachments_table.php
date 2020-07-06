@@ -17,7 +17,7 @@ class CreateRancanganRumahAttachmentsTable extends Migration
             $table->id();
             $table->integer('rancangan_rumah_id');
             $table->string('file');
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

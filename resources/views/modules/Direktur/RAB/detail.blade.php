@@ -1,7 +1,7 @@
 @extends('layouts.quixlab')
 
 @section('content')
-<a href="{{route('pelaksana.rab.index')}}"
+<a href="{{route('direktur.rab.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
 @if ($model->status == 5)
 <button type="button" class="btn btn-info" data-toggle="modal"

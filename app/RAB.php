@@ -27,14 +27,17 @@ class RAB extends Model
     {
         switch ($this->status) {
             case 1:
-                return '<span class="label label-warning">Diajukan pada Direktur</span>';
+                return '<span class="label label-warning">Belum diajukan pada Direktur</span>';
                 break;
             case 2:
-                return '<span class="label label-warning">Disetujui pada Direktur</span>';
+                return '<span class="label label-warning">Diajukan pada Direktur</span>';
+                break;
+            case 3:
+                return '<span class="label label-success">Disetujui Oleh Direktur</span>';
                 break;
             case 0:
                 return '<span class="label label-warning">Ditolak Direktur</span>';
-            break;
+                break;
         }
     }
 }

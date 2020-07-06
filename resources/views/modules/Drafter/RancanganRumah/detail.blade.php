@@ -117,8 +117,7 @@
                         <textarea name="keterangan" id="keterangan" cols="30" rows="4" class="form-control"></textarea>
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan Data
-                            Lokasi</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-upload"></i> Upload Gambar Rancangan Rumah </button>
                     </div>
                 </form>
             </div>

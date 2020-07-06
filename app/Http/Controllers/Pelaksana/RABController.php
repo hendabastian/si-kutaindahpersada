@@ -50,8 +50,8 @@ class RABController extends Controller
         }
 
         return view('modules.Pelaksana.RAB.create', [
-            'title' => 'Buat RAB: ' . $getRAB->getPemesanan->no_pemesanan,
-            'getRAB' => $getRAB,
+            'title' => 'Buat RAB: ' . $modelRAB->getPemesanan->no_pemesanan,
+            'getRAB' => $modelRAB,
             'no' => 1,
             'total' => 0
         ]);
