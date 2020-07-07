@@ -1,27 +1,15 @@
 @extends('layouts.quixlab')
 
 @section('content')
-<a href="{{route('admin.pemesanan.index')}}"
+<a href="{{route('admin.kwitansi.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-@if($model->status == 1)
-<button type="button" class="btn btn-info" data-toggle="modal"
-        data-target="#modalProses">
-    <i class="fa fa-check"></i> Proses Pesanan
-</button></td>
-@endif
-@if($model->status == 6)
-<button type="button" class="btn btn-info" data-toggle="modal"
-        data-target="#modalRap">
-    <i class="fa fa-check"></i> Proses RAP
-</button></td>
-@endif
-@if($model->status == 8)
-<button type="submit" form="spk-form" class="btn btn-info" onclick="return confirm('Anda yakin akan mengirim Surat Perintah Kerja ke pelaksana?')">
-    <i class="fa fa-check"></i> Proses SPK
+@if($model->status == 10)
+<button type="submit" form="kwitansi-form" class="btn btn-info" onclick="return confirm('Anda yakin akan kwitansi ke konsumen?')">
+    <i class="fa fa-check"></i> Proses Kwitansi
 </button></td>
 
-<form action="{{route('admin.pemesanan.proses-spk',  ['id' => $model->id])}}"
-    method="post" id="spk-form" name="spk-form">
+<form action="{{route('admin.kwitansi.proses-kwitansi',  ['id' => $model->id])}}"
+    method="post" id="kwitansi-form" name="kwitansi-form">
   @csrf
 </form>
 @endif

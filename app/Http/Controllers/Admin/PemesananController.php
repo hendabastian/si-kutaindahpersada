@@ -7,6 +7,8 @@ use App\JadwalPembuatanRumah;
 use App\PemeriksaanLokasi;
 use App\Pemesanan;
 use App\PemesananVerifikasi;
+use App\SuratPerintahKerja;
+use Illuminate\Database\Query\Expression;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -124,6 +126,32 @@ class PemesananController extends Controller
         $modelVerifikasi = new PemesananVerifikasi();
         $modelVerifikasi->pemesanan_id = $model->id;
         $modelVerifikasi->status = $request->input('status');
+        $modelVerifikasi->keterangan = $request->input('keterangan');
+        $modelVerifikasi->save();
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data Pemesanan berhasil diproses'
+        ]);
+        return redirect(route('admin.pemesanan.detail', ['id' => $id]));
+    }
+
+    public function prosesSpk($id, Request $request)
+    {
+        $model = Pemesanan::findOrFail($id);
+        $model->status = 9;
+        $model->save();
+
+        $modelSpk = new SuratPerintahKerja();
+        $modelSpk->pemesanan_id = $model->id;
+        $modelSpk->tgl_cetak = date('Y-m-d');
+        $modelSpk->status = 1;
+        $modelSpk->save();
+
+
+        $modelVerifikasi = new PemesananVerifikasi();
+        $modelVerifikasi->pemesanan_id = $model->id;
+        $modelVerifikasi->status = 9;
         $modelVerifikasi->keterangan = $request->input('keterangan');
         $modelVerifikasi->save();
 

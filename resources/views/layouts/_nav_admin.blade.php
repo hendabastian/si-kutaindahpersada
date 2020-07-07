@@ -30,6 +30,11 @@
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Jadwal Pembuatan Rumah</span>
                 </a>
             </li>
+            <li class="{{(Request::is('admin/kwitansi/*')) ? 'active' : ''}}">
+                <a href="{{route('admin.kwitansi.index')}}" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Kwitansi</span>
+                </a>
+            </li>
             <hr>
             <li class="nav-label">Informasi</li>
             <li class="{{(Request::is('admin/info-pembangunan-rumah/*')) ? 'active' : ''}}">

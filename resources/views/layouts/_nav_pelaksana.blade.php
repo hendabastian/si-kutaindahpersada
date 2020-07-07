@@ -12,6 +12,11 @@
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Rencana Anggaran Biaya</span>
                 </a>
             </li>
+            <li class="{{(Request::is('pelaksana/jadwal-pembuatan/*')) ? 'active' : ''}}">
+                <a href="{{route('pelaksana.jadwal-pembuatan.index')}}" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Jadwal Pembuatan Rumah</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

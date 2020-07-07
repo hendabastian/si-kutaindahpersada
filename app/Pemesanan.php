@@ -30,6 +30,11 @@ class Pemesanan extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function getJadwal()
+    {
+        return $this->hasOne(JadwalPembuatanRumah::class, 'pemesanan_id', 'id');
+    }
+
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {
@@ -61,7 +66,7 @@ class Pemesanan extends Model
                 return '<span class="label label-primary">Membuat Jadwal Pembuatan Rumah</span>';
                 break;
             case 10:
-                return '<span class="label label-primary">Menunggu Pembayaran</span>';
+                return '<span class="label label-primary">Menunggu Cetak Kwitansi</span>';
                 break;
             case 11:
                 return;'<span class="label label-success">Pemesanan Selesai</span>';

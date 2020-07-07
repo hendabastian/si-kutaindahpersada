@@ -53,6 +53,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
         Route::delete('delete/{id}', 'Admin\PemesananController@delete')->name('delete');
         Route::post('proses/{id}', 'Admin\PemesananController@proses')->name('proses');
         Route::post('proses-rap/{id}', 'Admin\PemesananController@prosesRap')->name('proses-rap');
+        Route::post('proses-spk/{id}', 'Admin\PemesananController@prosesSpk')->name('proses-spk');
     });
 
     Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {
@@ -63,15 +64,18 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
     });
 
     Route::name('surat-perintah-kerja.')->prefix('surat-perintah-kerja')->group(function () {
-        Route::get('index', function () {
-            return 'test';
-        })->name('index');
+        Route::get('index', 'Admin\SuratPerintahKerjaController@index')->name('index');
     });
 
     Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function () {
-        Route::get('index', function () {
-            return 'test';
-        })->name('index');
+        Route::get('index', 'Admin\JadwalPembuatanRumahController@index')->name('index');
+    });
+
+    Route::name('kwitansi.')->prefix('kwitansi')->group(function()
+    {
+        Route::get('index', 'Admin\KwitansiController@index')->name('index');
+        Route::get('detail/{id}', 'Admin\KwitansiController@detail')->name('detail');
+        Route::post('proses-kwitansi/{id}', 'Admin\KwitansiController@prosesKwitansi')->name('proses-kwitansi');
     });
 });
 
@@ -139,6 +143,12 @@ Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->
         Route::get('create/{pemesanan_id}', 'Pelaksana\RABController@create')->name('create');
         Route::post('save-barang/{rab_id}', 'Pelaksana\RABController@saveBarang')->name('save-barang');
         Route::post('save-rab/{rab_id}', 'Pelaksana\RABController@saveRAB')->name('save-rab');
+    });
+
+    Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function () {
+        Route::get('index', 'Pelaksana\JadwalPembuatanRumahController@index')->name('index');
+        Route::get('detail/{id}', 'Pelaksana\JadwalPembuatanRumahController@detail')->name('detail');
+        Route::post('set-jadwal/{id}', 'Pelaksana\JadwalPembuatanRumahController@setJadwal')->name('set-jadwal');
     });
 });
 

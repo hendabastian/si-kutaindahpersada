@@ -1,29 +1,13 @@
 @extends('layouts.quixlab')
 
 @section('content')
-<a href="{{route('admin.pemesanan.index')}}"
+<a href="{{route('pelaksana.jadwal-pembuatan.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-@if($model->status == 1)
+@if($model->status == 9)
 <button type="button" class="btn btn-info" data-toggle="modal"
         data-target="#modalProses">
-    <i class="fa fa-check"></i> Proses Pesanan
+    <i class="fa fa-calendar"></i> Proses Jadwal
 </button></td>
-@endif
-@if($model->status == 6)
-<button type="button" class="btn btn-info" data-toggle="modal"
-        data-target="#modalRap">
-    <i class="fa fa-check"></i> Proses RAP
-</button></td>
-@endif
-@if($model->status == 8)
-<button type="submit" form="spk-form" class="btn btn-info" onclick="return confirm('Anda yakin akan mengirim Surat Perintah Kerja ke pelaksana?')">
-    <i class="fa fa-check"></i> Proses SPK
-</button></td>
-
-<form action="{{route('admin.pemesanan.proses-spk',  ['id' => $model->id])}}"
-    method="post" id="spk-form" name="spk-form">
-  @csrf
-</form>
 @endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
@@ -159,79 +143,32 @@
     </div>
 </div>
 
-@if($model->status == 1)
+@if($model->status == 9)
 <div class="modal fade" id="modalProses">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Proses Pesanan</h5>
+                <h5 class="modal-title">Proses Jadwal</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="fa fa-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.pemesanan.proses', ['id' => $model->id])}}" method="post">
+                <form action="{{route('pelaksana.jadwal-pembuatan.set-jadwal', ['id' => $model->id])}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="status" id="statusApprove" value="2" class="form-check-input"
-                                   required>
-                            <label for="statusApprove" class="form-check-label">Lanjut Pemeriksaan Lokasi</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="status" id="statusTolak" value="0" class="form-check-input"
-                                   required>
-                            <label for="statusTolak" class="form-check-label">Tolak Pemesanan</label>
-                        </div>
+                    <h4>Tanggal Mulai Pekerjaan Dari Konsumen: {{$model->getJadwal->tgl_mulai}}</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal Selesai Pekerjaan</label>
+                        <input type="date" name="tanggal" id="tanggal" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="20" rows="5" class="form-control"></textarea>
+                        <textarea name="keterangan" id="keterangan" cols="30" rows="4" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success btn-block" type="submit">Proses Pesanan</button>
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-sm-12">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
-@if($model->status == 6)
-<div class="modal fade" id="modalRap">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Proses RAP Pesanan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="fa fa-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('admin.pemesanan.proses', ['id' => $model->id])}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="status" id="statusApprove" value="7" class="form-check-input"
-                                   required>
-                            <label for="statusApprove" class="form-check-label">Lanjut RAP Ke Konsumen</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" name="status" id="statusTolak" value="0" class="form-check-input"
-                                   required>
-                            <label for="statusTolak" class="form-check-label">Tolak Pemesanan</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="20" rows="5" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-success btn-block" type="submit">Proses Pesanan</button>
+                        <button class="btn btn-success btn-block" type="submit">Proses Jadwal</button>
                     </div>
                 </form>
                 <div class="row">
