@@ -20,15 +20,15 @@
     $pemesanan = App\Pemesanan::all();
     $pemesananProses = App\Pemesanan::where('status', 1);
     $pemesananLokasi = App\Pemesanan::where('status', 2);
-    $pemesananRAB = App\Pemesanan::where('status', 3);
-    $pemesananDirektur = App\Pemesanan::where('status', 4);
-    $pemesananProses = App\Pemesanan::where('status', 5);
+    $pemesananRancangan = App\Pemesanan::where('status', 3);
+    $pemesananRAB = App\Pemesanan::where('status', 4);
+    $pemesananDirektur = App\Pemesanan::where('status', 5);
     $pemesananRAP = App\Pemesanan::where('status', 6);
-    $pemesananProses = App\Pemesanan::where('status', 7);
+    $pemesananTanggalKonsumen = App\Pemesanan::where('status', 7);
     $pemesananSPK = App\Pemesanan::where('status', 8);
-    $pemesananProses = App\Pemesanan::where('status', 9);
+    $pemesananJadwal = App\Pemesanan::where('status', 9);
     $pemesananKwitansi = App\Pemesanan::where('status', 10);
-    $pemesananProses = App\Pemesanan::where('status', 11);
+    $pemesananSelesai = App\Pemesanan::where('status', 11);
     @endphp
     <!--**********************************
         Main wrapper start

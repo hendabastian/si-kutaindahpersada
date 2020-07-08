@@ -8,9 +8,6 @@
                 <h4>Brosur</h4>
             </div>
             <div class="card-body">
-                <a href="{{route('konsumen.brosur.create')}}" class="btn btn-primary">Tambah
-                    Brosur</a>
-                <hr>
                 @if($model->isNotEmpty())
                 <table class="table table-striped">
                     <thead>

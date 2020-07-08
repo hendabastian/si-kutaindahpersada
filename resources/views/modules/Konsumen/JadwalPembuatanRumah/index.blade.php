@@ -8,24 +8,25 @@
                 <h4>{{$title}}</h4>
             </div>
             <div class="card-body">
-                @if(!empty($model))
+                @if($model->isNotEmpty())
                 <table class="table table-striped">
                     <thead>
                         <th>No. Pemesanan</th>
-                        <th>Status</th>
-                        <th style="width: 220px;">Aksi</th>
+                        <th>Nama Konsumen</th>
+                        <th>Tipe Bangunan</th>
+                        <th>Tanggal Mulai</th>
+                        <th>Tanggal Selesai</th>
                     </thead>
                     <tbody>
                         @foreach($model as $index => $data)
                         <tr>
                             <td>
-                                {!! html_entity_decode($data->no_pemesanan) !!}
+                                {{$data->no_pemesanan}}
                             </td>
-                            <td>{!! $data->status_label !!}</td>
-                            <td>
-                                <a href="{{route('pelaksana.jadwal-pembuatan.detail', ['id' => $data->id])}}"
-                                   class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Detail</a>
-                            </td>
+                            <td>{{$data->nama_pemesan}}</td>
+                            <td>{{$data->tipe_bangunan}}</td>
+                            <td>{{date('d-M-Y', strtotime($data->getJadwal->tgl_mulai)) }}</td>
+                            <td>{{date('d-M-Y', strtotime($data->getJadwal->tgl_selesai)) }}</td>
                         </tr>
                         @endforeach
                     </tbody>

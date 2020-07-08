@@ -115,17 +115,8 @@ Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->gr
         })->name('index');
     });
 
-
-    Route::name('surat-perintah-kerja.')->prefix('surat-perintah-kerja')->group(function () {
-        Route::get('index', function () {
-            return 'test';
-        })->name('index');
-    });
-
     Route::name('jadwal-pembuatan.')->prefix('jadwal-pembuatan')->group(function () {
-        Route::get('index', function () {
-            return 'test';
-        })->name('index');
+        Route::get('index', 'Konsumen\JadwalPembuatanRumahController@index')->name('index');
     });
 
     Route::name('rancangan-rumah.')->prefix('rancangan-rumah')->group(function () {

@@ -4,10 +4,10 @@
             <li class="nav-label">Menu</li>
             <li class="{{Request::is('admin/pemesanan/*') ? 'active' : ''}}">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <span class="nav-text"><i class="fa fa-shopping-cart"></i> Pemesanan</span> 
+                    <span class="nav-text"><i class="fa fa-shopping-cart"></i> Pemesanan</span>
                     <span
-                    style="{{$pemesananProses->count() == 0 ? 'display:none;' : ''}}"
-                    class="label label-warning">{{$pemesananProses->count()}}</span>
+                          style="{{$pemesananProses->count() == 0 ? 'display:none;' : ''}}"
+                          class="label label-warning">{{$pemesananProses->count()}}</span>
                 </a>
                 <ul aria-expanded="false">
                     <li class="{{Request::is('admin/pemesanan/*') ? 'active' : ''}}">
@@ -23,6 +23,9 @@
             <li class="{{(Request::is('admin/surat-perintah-kerja/*')) ? 'active' : ''}}">
                 <a href="{{route('admin.surat-perintah-kerja.index')}}" aria-expanded="false">
                     <i class="fa fa-map-o"></i><span class="nav-text">Surat Perintah Kerja</span>
+                    <span
+                          style="{{$pemesananSPK->count() == 0 ? 'display:none;' : ''}}"
+                          class="label label-warning">{{$pemesananSPK->count()}}</span>
                 </a>
             </li>
             <li class="{{(Request::is('admin/jadwal-pembuatan/*')) ? 'active' : ''}}">
@@ -33,6 +36,9 @@
             <li class="{{(Request::is('admin/kwitansi/*')) ? 'active' : ''}}">
                 <a href="{{route('admin.kwitansi.index')}}" aria-expanded="false">
                     <i class="fa fa-money"></i><span class="nav-text">Kwitansi</span>
+                    <span
+                          style="{{$pemesananKwitansi->count() == 0 ? 'display:none;' : ''}}"
+                          class="label label-warning">{{$pemesananKwitansi->count()}}</span>
                 </a>
             </li>
             <hr>
