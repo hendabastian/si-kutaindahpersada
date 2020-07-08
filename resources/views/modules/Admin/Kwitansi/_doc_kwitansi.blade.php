@@ -32,7 +32,7 @@
         </tr>
         <tr>
             <td style="text-align: center; width: 100%;">
-                <p style="margin: -10px 0px; ">No. {{$model->no_pemesanan}}</p>
+                <p style="margin: -10px 0px; ">No. Pemesanan: {{$model->no_pemesanan}}</p>
             </td>
         </tr>
     </table>
