@@ -12,37 +12,37 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="judul">Judul</label>
-                                <input type="text" name="judul" id="judul" class="form-control">
+                                <input type="text" name="judul" id="judul" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="model">Model</label>
-                                <input type="text" name="model" id="model" class="form-control">
+                                <input type="text" name="model" id="model" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="harga">Harga</label>
-                                <input type="text" name="harga" id="harga" class="form-control">
+                                <input type="number" name="harga" id="harga" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="lama_pembangunan">Lama Pembangunan</label>
-                                <input type="text" name="lama_pembangunan" id="lama_pembangunan" class="form-control">
+                                <input type="text" name="lama_pembangunan" id="lama_pembangunan" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="luas_tanah">Luas Tanah</label>
-                                <input type="text" name="luas_tanah" id="luas_tanah" class="form-control">
+                                <input type="number" name="luas_tanah" id="luas_tanah" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="luas_bangunan">Luas Bangunan</label>
-                                <input type="text" name="luas_bangunan" id="luas_bangunan" class="form-control">
+                                <input type="number" name="luas_bangunan" id="luas_bangunan" class="form-control" required>
                             </div>
                         </div>
                     </div>
