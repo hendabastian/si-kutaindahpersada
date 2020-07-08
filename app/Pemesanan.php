@@ -69,7 +69,7 @@ class Pemesanan extends Model
                 return '<span class="label label-primary">Menunggu Cetak Kwitansi</span>';
                 break;
             case 11:
-                return;'<span class="label label-success">Pemesanan Selesai</span>';
+                return '<span class="label label-success">Pemesanan Selesai</span>';
                 break;
             case 0:
                 return '<span class="label label-danger">Ditolak</span>';

@@ -127,6 +127,12 @@ Route::name('konsumen.')->prefix('konsumen')->middleware(['auth', 'role:5'])->gr
             return 'test';
         })->name('index');
     });
+
+    Route::name('rancangan-rumah.')->prefix('rancangan-rumah')->group(function () {
+        Route::get('index', function () {
+            return 'test';
+        })->name('index');
+    });
 });
 
 // Route Pelaksana

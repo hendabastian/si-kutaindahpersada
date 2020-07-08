@@ -8,9 +8,11 @@ use App\PemeriksaanLokasi;
 use App\Pemesanan;
 use App\PemesananVerifikasi;
 use App\SuratPerintahKerja;
+use App\User;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class PemesananController extends Controller
 {
@@ -140,25 +142,32 @@ class PemesananController extends Controller
     {
         $model = Pemesanan::findOrFail($id);
         $model->status = 9;
-        $model->save();
+        // $model->save();
 
         $modelSpk = new SuratPerintahKerja();
         $modelSpk->pemesanan_id = $model->id;
         $modelSpk->tgl_cetak = date('Y-m-d');
         $modelSpk->status = 1;
-        $modelSpk->save();
-
+        // $modelSpk->save();
 
         $modelVerifikasi = new PemesananVerifikasi();
         $modelVerifikasi->pemesanan_id = $model->id;
         $modelVerifikasi->status = 9;
         $modelVerifikasi->keterangan = $request->input('keterangan');
-        $modelVerifikasi->save();
+        // $modelVerifikasi->save();
 
         $request->session()->flash('message', [
             'class' => 'success',
             'body' => 'Data Pemesanan berhasil diproses'
         ]);
-        return redirect(route('admin.pemesanan.detail', ['id' => $id]));
+
+        $pelaksana = User::where('user_role_id', 3)->firstOrFail();
+        $pdf = PDF::loadView('modules.Admin.SuratPerintahKerja._doc_spk', [
+            'pemesanan' => $model,
+            'pelaksana' => $pelaksana,
+            'modelSpk' => $modelSpk
+        ]);
+        return $pdf->stream();
+        // return redirect(route('admin.pemesanan.detail', ['id' => $id]));
     }
 }
