@@ -142,19 +142,19 @@ class PemesananController extends Controller
     {
         $model = Pemesanan::findOrFail($id);
         $model->status = 9;
-        // $model->save();
+        $model->save();
 
         $modelSpk = new SuratPerintahKerja();
         $modelSpk->pemesanan_id = $model->id;
         $modelSpk->tgl_cetak = date('Y-m-d');
         $modelSpk->status = 1;
-        // $modelSpk->save();
+        $modelSpk->save();
 
         $modelVerifikasi = new PemesananVerifikasi();
         $modelVerifikasi->pemesanan_id = $model->id;
         $modelVerifikasi->status = 9;
         $modelVerifikasi->keterangan = $request->input('keterangan');
-        // $modelVerifikasi->save();
+        $modelVerifikasi->save();
 
         $request->session()->flash('message', [
             'class' => 'success',
@@ -167,7 +167,13 @@ class PemesananController extends Controller
             'pelaksana' => $pelaksana,
             'modelSpk' => $modelSpk
         ]);
-        return $pdf->stream();
-        // return redirect(route('admin.pemesanan.detail', ['id' => $id]));
+        
+        if (is_dir(public_path() . '/printed') == false) {
+            mkdir(public_path() . '/printed', 0777);
+        }
+        $path = public_path() . '/printed/spk_' . $model->no_pemesanan . '.pdf';
+        file_put_contents($path, $pdf->output());
+
+        return redirect(route('admin.pemesanan.detail', ['id' => $id]));
     }
 }

@@ -33,21 +33,21 @@ class KwitansiController extends Controller
     {
         $model = Pemesanan::findOrFail($id);
         $model->status = 11;
-        // $model->save();
+        $model->save();
 
         $modelKwitansi = new Kwitansi();
         $modelKwitansi->pemesanan_id = $model->id;
         $modelKwitansi->no_kwitansi = $model->no_pemesanan;
         $modelKwitansi->deskripsi = 'Dicetak pada: ' . date('Y-m-d h:i:s');
         $modelKwitansi->status = 1;
-        // $modelKwitansi->save();
+        $modelKwitansi->save();
 
 
         $modelVerifikasi = new PemesananVerifikasi();
         $modelVerifikasi->pemesanan_id = $model->id;
         $modelVerifikasi->status = 11;
         $modelVerifikasi->keterangan = 'Dicetak pada: ' . date('Y-m-d h:i:s');
-        // $modelVerifikasi->save();
+        $modelVerifikasi->save();
 
         $pdf = PDF::loadView('modules.Admin.Kwitansi._doc_kwitansi', [
             'model' => $model,
@@ -59,7 +59,11 @@ class KwitansiController extends Controller
             'class' => 'success',
             'body' => 'Data Kwitansi berhasil dikirm'
         ]);
-        return $pdf->stream();
-        // return redirect(route('admin.pemesanan.detail', ['id' => $id]));
+        if (is_dir(public_path() . '/printed') == false) {
+            mkdir(public_path() . '/printed', 0777);
+        }
+        $path = public_path() . '/printed/kwitansi_' . $model->no_pemesanan . '.pdf';
+        file_put_contents($path, $pdf->output());
+        return redirect(route('admin.kwitansi.detail', ['id' => $id]));
     }
 }

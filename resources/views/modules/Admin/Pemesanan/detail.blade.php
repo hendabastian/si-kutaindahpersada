@@ -16,14 +16,20 @@
 </button></td>
 @endif
 @if($model->status == 8)
-<button type="submit" form="spk-form" class="btn btn-info" onclick="return confirm('Anda yakin akan mengirim Surat Perintah Kerja ke pelaksana?')">
+<button type="submit" form="spk-form" class="btn btn-info"
+        onclick="return confirm('Anda yakin akan mengirim Surat Perintah Kerja ke pelaksana?')">
     <i class="fa fa-check"></i> Proses SPK
 </button></td>
 
 <form action="{{route('admin.pemesanan.proses-spk',  ['id' => $model->id])}}"
-    method="post" id="spk-form" name="spk-form">
-  @csrf
+      method="post" id="spk-form" name="spk-form">
+    @csrf
 </form>
+@endif
+
+@if ($model->status > 8)
+<a href="{{asset('printed/spk_'.$model->no_pemesanan. '.pdf')}}" target="_blank" rel="noopener noreferrer"
+   class="btn btn-info">Download Surat Perintah Kerja</a>
 @endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>

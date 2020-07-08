@@ -4,14 +4,20 @@
 <a href="{{route('admin.kwitansi.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
 @if($model->status == 10)
-<button type="submit" form="kwitansi-form" class="btn btn-info" onclick="return confirm('Anda yakin akan kwitansi ke konsumen?')">
+<button type="submit" form="kwitansi-form" class="btn btn-info"
+        onclick="return confirm('Anda yakin akan kwitansi ke konsumen?')">
     <i class="fa fa-check"></i> Proses Kwitansi
 </button></td>
 
 <form action="{{route('admin.kwitansi.proses-kwitansi',  ['id' => $model->id])}}"
-    method="post" id="kwitansi-form" name="kwitansi-form">
-  @csrf
+      method="post" id="kwitansi-form" name="kwitansi-form">
+    @csrf
 </form>
+@endif
+
+@if ($model->status == 11)
+<a href="{{asset('printed/kwitansi_'.$model->no_pemesanan. '.pdf')}}" target="_blank" rel="noopener noreferrer"
+   class="btn btn-info">Download Kwitansi</a>
 @endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
