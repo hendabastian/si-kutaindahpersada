@@ -18,19 +18,19 @@
                     @csrf
                     <div class="form-group">
                         <label for="uraian">Uraian</label>
-                        <input type="text" name="uraian" id="uraian" class="form-control">
+                        <input type="text" name="uraian" id="uraian" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="satuan">Satuan</label>
-                        <input type="text" name="satuan" id="satuan" class="form-control">
+                        <input type="text" name="satuan" id="satuan" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="volume">Volume</label>
-                        <input type="text" name="volume" id="volume" class="form-control">
+                        <input type="number" name="volume" id="volume" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="harga_satuan">Harga Satuan</label>
-                        <input type="text" name="harga_satuan" id="harga_satuan" class="form-control">
+                        <input type="number" name="harga_satuan" id="harga_satuan" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>

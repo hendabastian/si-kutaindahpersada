@@ -32,10 +32,12 @@
                                     @method('delete')
                                     <a href="{{route('konsumen.pemesanan.detail', ['id' => $data->id])}}"
                                        class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Detail</a>
+                                    @if($data->status == 1 || $data->status == 0)
                                     <a href="{{route('konsumen.pemesanan.edit', ['id' => $data->id])}}"
                                        class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Edit</a>
                                     <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>
                                         Delete</button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>

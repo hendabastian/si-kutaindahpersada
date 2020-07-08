@@ -10,11 +10,11 @@
                     @csrf
                     <div class="form-group">
                         <label for="judul">Judul</label>
-                        <input type="text" name="judul" id="judul" class="form-control">
+                        <input type="text" name="judul" id="judul" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="deskripsi">Deskripsi</label>
-                        <input type="textarea" name="deskripsi" id="deskripsi" class="form-control">
+                        <input type="textarea" name="deskripsi" id="deskripsi" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto</label>

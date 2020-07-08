@@ -31,10 +31,71 @@
 <a href="{{asset('printed/spk_'.$model->no_pemesanan. '.pdf')}}" target="_blank" rel="noopener noreferrer"
    class="btn btn-info">Download Surat Perintah Kerja</a>
 @endif
+
+@if ($model->status == 11)
+<a href="{{asset('printed/kwitansi_'.$model->no_pemesanan. '.pdf')}}" target="_blank" rel="noopener noreferrer"
+   class="btn btn-info">Download Kwitansi</a>
+@endif
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
 <div class="row justify-content-center">
+    @if ($model->status > 4)
+    @php
+    $no = 1;
+    $total = 0;
+    @endphp
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header border-bottom align-middle">
+                <h4 class="float-left">Rencana Anggaran Biaya</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <th>No</th>
+                        <th>Uraian</th>
+                        <th>Satuan</th>
+                        <th>Volume</th>
+                        <th>Harga Satuan</th>
+                        <th>Total Harga</th>
+                        <th>Deskripsi</th>
+                    </thead>
+                    <tbody>
+                        @foreach($model->getRAB->getDetail as $index => $item)
+                        @php
+                        $total += ($item->volume * $item->harga_satuan);
+                        @endphp
+                        <tr>
+                            <td>{{$no++}}</td>
+                            <td>{{$item->uraian}}</td>
+                            <td>{{$item->satuan}}</td>
+                            <td>{{number_format($item->volume)}}</td>
+                            <td>{{number_format($item->harga_satuan)}}</td>
+                            <td>{{number_format($item->volume * $item->harga_satuan)}}</td>
+                            <td>{{$item->deskripsi}}</td>
+                        </tr>
+
+                        @endforeach
+                        <tr>
+                            <th colspan="5" class="text-right">Subtotal</th>
+                            <td colspan="2">{{number_format($total)}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="5" class="text-right">PPH 4%</th>
+                            <td colspan="2">{{number_format($total * 0.04)}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="5" class="text-right">Jumlah (incl. PPH)</th>
+                            <td colspan="2">{{number_format($total + ($total * 0.04))}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @endif
+
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header border-bottom align-middle">
@@ -95,7 +156,6 @@
             </div>
         </div>
     </div>
-
     {{-- <div class="col-md-12">
         <div class="card">
             <div class="card-header border-bottom">

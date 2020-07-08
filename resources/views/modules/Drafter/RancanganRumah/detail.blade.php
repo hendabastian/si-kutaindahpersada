@@ -110,7 +110,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="file">Foto</label>
-                        <input type="file" name="file[]" id="file[]" class="form-control" accept="image/*" multiple>
+                        <input type="file" name="file[]" id="file[]" class="form-control" accept="image/*" multiple required>
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>

@@ -6,8 +6,8 @@
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <span class="nav-text"><i class="fa fa-shopping-cart"></i> Pemesanan</span>
                     <span
-                          style="{{$pemesananProses->count() == 0 ? 'display:none;' : ''}}"
-                          class="label label-warning">{{$pemesananProses->count()}}</span>
+                          style="{{$pemesananProses->count() + $pemesananRAP->count() == 0 ? 'display:none;' : ''}}"
+                          class="label label-warning">{{$pemesananProses->count() + $pemesananRAP->count() }}</span>
                 </a>
                 <ul aria-expanded="false">
                     <li class="{{Request::is('admin/pemesanan/*') ? 'active' : ''}}">
@@ -15,7 +15,7 @@
                            class="{{Request::is('admin/pemesanan/*') ? 'active' : ''}}"
                            href="{{route('admin.pemesanan.index')}}">Data Pemesanan <span
                                   class="label label-warning"
-                                  style="{{$pemesananProses->count() == 0 ? 'display:none;' : ''}}">{{$pemesananProses->count()}}</span></a>
+                                  style="{{$pemesananProses->count() + $pemesananRAP->count() == 0 ? 'display:none;' : ''}}">{{$pemesananProses->count() + $pemesananRAP->count() }}</span></a>
                     </li>
                     <li><a href="./index.html">Laporan Pemesanan</a></li>
                 </ul>

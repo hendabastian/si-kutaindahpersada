@@ -3,12 +3,17 @@
 @section('content')
 <a href="{{route('pelaksana.jadwal-pembuatan.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+@if ($model->status > 8)
+<a href="{{asset('printed/spk_'.$model->no_pemesanan. '.pdf')}}" target="_blank" rel="noopener noreferrer"
+   class="btn btn-warning">Download Surat Perintah Kerja</a>
+@endif
 @if($model->status == 9)
 <button type="button" class="btn btn-info" data-toggle="modal"
         data-target="#modalProses">
     <i class="fa fa-calendar"></i> Proses Jadwal
 </button></td>
 @endif
+
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
@@ -157,15 +162,16 @@
                 <form action="{{route('pelaksana.jadwal-pembuatan.set-jadwal', ['id' => $model->id])}}" method="post">
                     @csrf
                     <div class="form-group">
-                    <h4>Tanggal Mulai Pekerjaan Dari Konsumen: {{$model->getJadwal->tgl_mulai}}</h4>
+                        <h4>Tanggal Mulai Pekerjaan Dari Konsumen: {{$model->getJadwal->tgl_mulai}}</h4>
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal Selesai Pekerjaan</label>
-                        <input type="date" name="tanggal" id="tanggal" class="form-control">
+                        <input type="date" name="tanggal" id="tanggal" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="30" rows="4" class="form-control"></textarea>
+                        <textarea name="keterangan" id="keterangan" cols="30" rows="4" class="form-control"
+                                  required></textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success btn-block" type="submit">Proses Jadwal</button>
