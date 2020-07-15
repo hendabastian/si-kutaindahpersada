@@ -16,14 +16,10 @@
 <body style="width: 100%;">
     <table style="width: 100%;">
         <tr>
-            <th style="text-align: center; width: 100%;">
-                <h1 style="margin: -5px 0px;">PT. Kuta Indah Persada</h1>
-            </th>
-        </tr>
-        <tr>
-            <th style="text-align: center; width: 100%;">
-                <p style="margin: -5px 0px;">Jl. Ciawi Tali, No.23A Citereup, Cimahi, Jawa Barat. </p>
-            </th>
+            <td style="text-align: center;">
+            <img src="_{{asset('img/kop.jpg')}}" alt="">
+                <hr>
+            </td>
         </tr>
         <tr>
             <th style="text-align: center; width: 100%;">

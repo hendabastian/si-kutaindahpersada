@@ -23,7 +23,7 @@
 @endif
 
 @if ($model->status == 11)
-<a href="{{asset('printed/kwitansi_'.$model->no_pemesanan. '.pdf')}}" target="_blank" rel="noopener noreferrer"
+<a href="{{asset('printed/kwitansi_' . $model->no_pemesanan . '.pdf')}}" target="_blank" rel="noopener noreferrer"
    class="btn btn-info">Download Kwitansi</a>
 @endif
 <hr>

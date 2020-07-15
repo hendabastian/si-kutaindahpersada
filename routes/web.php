@@ -131,6 +131,7 @@ Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->
     Route::name('pemeriksaan-lokasi.')->prefix('pemeriksaan-lokasi')->group(function () {
         Route::get('index', 'Pelaksana\PemeriksaanLokasiController@index')->name('index');
         Route::get('detail/{id}', 'Pelaksana\PemeriksaanLokasiController@detail')->name('detail');
+        Route::post('lokasi-invalid/{id}', 'Pelaksana\PemeriksaanLokasiController@lokasiInvalid')->name('lokasi-invalid');
         Route::post('proses-lokasi/{id}', 'Pelaksana\PemeriksaanLokasiController@prosesLokasi')->name('proses-lokasi');
     });
 

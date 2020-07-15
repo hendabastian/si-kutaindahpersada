@@ -75,4 +75,34 @@ class PemeriksaanLokasiController extends Controller
         ]);
         return redirect(route('pelaksana.pemeriksaan-lokasi.detail', ['id' => $model->id]));
     }
+
+    public function lokasiInvalid($id, Request $request)
+    {
+        $model = PemeriksaanLokasi::findOrFail($id);
+        $model->status = 0;
+        $model->save();
+        
+        $modelPemesanan = Pemesanan::findOrFail($model->pemesanan_id);
+        $modelPemesanan->status = 0;
+        $modelPemesanan->save();
+
+        $modelPemesananVerifikasi = new PemesananVerifikasi();
+        $modelPemesananVerifikasi->pemesanan_id = $model->pemesanan_id;
+        $modelPemesananVerifikasi->status = 0;
+        $modelPemesananVerifikasi->keterangan = $request->input('keterangan');
+        $modelPemesananVerifikasi->save();
+
+        $modelVerifikasi = new PemeriksaanLokasiVerifikasi();
+        $modelVerifikasi->pemeriksaan_lokasi_id = $model->id;
+        $modelVerifikasi->keterangan = 'Lokasi tidak valid';
+        $modelVerifikasi->status = 0;
+        $modelVerifikasi->save();
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Data lokasi berhasil dikembalikan ke konsumen untuk ditinjau kembali'
+        ]);
+
+        return redirect(route('pelaksana.pemeriksaan-lokasi.detail', ['id' => $model->id]));
+    }
 }

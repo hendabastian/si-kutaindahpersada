@@ -16,14 +16,10 @@
 <body style="width: 100%;">
     <table style="width: 100%;">
         <tr>
-            <th style="text-align: center; width: 100%;">
-                <h1 style="margin: -5px 0px;">PT. Kuta Indah Persada</h1>
-            </th>
-        </tr>
-        <tr>
-            <th style="text-align: center; width: 100%;">
-                <p style="margin: -5px 0px;">Jl. Ciawi Tali, No.23A Citereup, Cimahi, Jawa Barat. </p>
-            </th>
+            <td style="text-align: center;">
+                <img src="_{{asset('img/kop.jpg')}}" alt="">
+                <hr>
+            </td>
         </tr>
         <tr>
             <th style="text-align: center; width: 100%;">
@@ -113,7 +109,7 @@
               }
               return $hasil;
               }
-              $terbilang = ucwords(terbilang($total + ($total * 0.04)))." Rupiah";
+              $terbilang=ucwords(terbilang($total + ($total * 0.04)))." Rupiah";
               @endphp
               <tr>
                 <td colspan="7">Terbilang: ## {{$terbilang}}</td>
@@ -124,7 +120,7 @@
     <table style="width: 100%;">
         <tr>
             <th style="text-align: right; width: 100%;">
-            <p style="margin: -5px 0px;">Bandung, {{date('d-M-Y')}}</p>
+                <p style="margin: -5px 0px;">Bandung, {{date('d-M-Y')}}</p>
             </th>
         </tr>
     </table>

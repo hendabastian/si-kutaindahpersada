@@ -100,11 +100,14 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
-
+<script>
+    function lokasiValid() {
+            document.getElementById('form-input-lokasi').style.display='block'
+            document.getElementById('btn-konfirmasi-lokasi').style.display='none'
+        }
+</script>
 <div class="modal fade" id="modalProses">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -117,47 +120,77 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('pelaksana.pemeriksaan-lokasi.proses-lokasi', ['id' => $model->id])}}"
-                      method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="nama_pemilik">Nama Pemilik</label>
-                        <input type="text" name="nama_pemilik" id="nama_pemilik" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat_lokasi">Alamat Lokasi</label>
-                        <textarea name="alamat_lokasi" id="alamat_lokasi" cols="30" rows="4"
-                                  class="form-control" required></textarea>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="luas_tanah">Luas Tanah</label>
-                                <input type="text" name="luas_tanah" id="luas_tanah" class="form-control" required>
+                <div id="btn-konfirmasi-lokasi" class="text-center">
+                    <h4 class="text-center">Apakah lokasi yang telah diinput konsumen benar-benar ada?</h4>
+                    <button class="btn btn-primary" onclick="lokasiValid()"><i class="fa fa-check"></i> Ya</button>
+                    <button class="btn btn-danger" onclick="document.getElementById('lokasi-invalid').submit()"><i class="fa fa-close"></i> Tidak</button>
+                    <form action="{{route('pelaksana.pemeriksaan-lokasi.lokasi-invalid', ['id' => $model->id])}}" method="post" name="lokasi-invalid" id="lokasi-invalid">
+                        @csrf
+                    </form>
+                </div>
+                <div id="form-input-lokasi" style="display: none;">
+                    <form action="{{route('pelaksana.pemeriksaan-lokasi.proses-lokasi', ['id' => $model->id])}}"
+                          method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="no_pemesanan">No Pemesanan</label>
+                            <input type="text" name="no_pemesanan" id="no_pemesanan" class="form-control" readonly
+                                   value="{{$model->getPemesanan->no_pemesanan}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_pemilik">Nama Pemilik</label>
+                            <input type="text" name="nama_pemilik" id="nama_pemilik" class="form-control" required
+                                   value="{{$model->getPemesanan->nama_pemesan}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat_lokasi">Alamat Lokasi</label>
+                            <textarea name="alamat_lokasi" id="alamat_lokasi" cols="30" rows="4"
+                                      class="form-control" required>{{$model->getPemesanan->alamat_proyek}}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="luas_tanah">Luas Tanah</label>
+                                    <div class="input-group">
+                                        <input type="text" name="luas_tanah" id="luas_tanah" class="form-control"
+                                               required
+                                               value="{{$model->getPemesanan->luas_tanah}}">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">m&#178;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="luas_bangunan">Luas Bangunan</label>
+                                    <div class="input-group">
+                                        <input type="text" name="luas_bangunan" id="luas_bangunan" class="form-control"
+                                               value="{{$model->getPemesanan->luas_bangunan}}"
+                                               required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">m&#178;</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <label for="luas_bangunan">Luas Bangunan</label>
-                                <input type="text" name="luas_bangunan" id="luas_bangunan" class="form-control"
-                                       required>
-                            </div>
+                        <div class="form-group">
+                            <label for="file">Foto</label>
+                            <input type="file" name="file[]" id="file[]" class="form-control" accept="image/*" multiple
+                                   required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="file">Foto</label>
-                        <input type="file" name="file[]" id="file[]" class="form-control" accept="image/*" multiple
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" cols="30" rows="4" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan Data
-                            Lokasi</button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for="keterangan">Keterangan</label>
+                            <textarea name="keterangan" id="keterangan" cols="30" rows="4"
+                                      class="form-control"></textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Simpan Data
+                                Lokasi</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
