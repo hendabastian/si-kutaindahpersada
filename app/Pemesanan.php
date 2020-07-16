@@ -76,4 +76,46 @@ class Pemesanan extends Model
                 break;
         }
     }
+
+    public function getStatusLabelTextAttribute()
+    {
+        switch ($this->status) {
+            case 1:
+                return 'Menunggu Validasi Admin';
+                break;
+            case 2:
+                return 'Menunggu Pemeriksaan Lokasi';
+                break;
+            case 3:
+                return 'Menunggu Rancangan Drafter';
+                break;
+            case 4:
+                return 'Menunggu Rancangan Anggaran Biaya';
+                break;
+            case 5:
+                return 'Menunggu Verifikasi Direktur';
+                break;
+            case 6:
+                return 'Menunggu Rancangan Anggaran Pembelian';
+                break;
+            case 7:
+                return 'Menunggu Penentuan Tanggal Dari Konsumen';
+                break;
+            case 8:
+                return 'Menunggu Surat Perintah Kerja';
+                break;
+            case 9:
+                return 'Membuat Jadwal Pembuatan Rumah';
+                break;
+            case 10:
+                return 'Menunggu Cetak Kwitansi';
+                break;
+            case 11:
+                return 'Pemesanan Selesai';
+                break;
+            case 0:
+                return 'Ditolak';
+                break;
+        }
+    }
 }

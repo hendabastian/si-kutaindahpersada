@@ -166,6 +166,11 @@ Route::name('direktur.')->prefix('direktur')->middleware(['auth', 'role:4'])->gr
         Route::get('detail/{id}', 'Direktur\RABController@detail')->name('detail');
         Route::post('approve/{id}', 'Direktur\RABController@approve')->name('approve');
     });
+
+    Route::name('laporan.')->prefix('laporan')->group(function() {
+        Route::get('index', 'Direktur\LaporanController@index')->name('index');
+        Route::post('show-laporan', 'Direktur\LaporanController@showLaporan')->name('show-laporan');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

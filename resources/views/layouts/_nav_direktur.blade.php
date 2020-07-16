@@ -10,6 +10,11 @@
                           class="label label-warning">{{$pemesananDirektur->count()}}</span>
                 </a>
             </li>
+            <li class="{{(Request::is('direktur/laporan/*')) ? 'active' : ''}}">
+                <a href="{{route('direktur.laporan.index')}}">
+                    <i class="fa fa-file-o"></i><span class="nav-text">Laporan</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
