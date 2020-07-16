@@ -123,6 +123,11 @@
                 <p style="margin: -5px 0px;">Bandung, {{date('d-M-Y')}}</p>
             </th>
         </tr>
+        <tr>
+            <td style="text-align: right; width: 100%;">
+                <img src="{{public_path('img/ttd.png')}}" style="width: 190px;">
+            </td>
+        </tr>
     </table>
 </body>
 
