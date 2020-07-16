@@ -162,12 +162,12 @@ class PemesananController extends Controller
         ]);
 
         $pelaksana = User::where('user_role_id', 3)->firstOrFail();
-        $pdf = PDF::loadView('modules.Admin.SuratPerintahKerja._doc_spk', [
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('modules.Admin.SuratPerintahKerja._doc_spk', [
             'pemesanan' => $model,
             'pelaksana' => $pelaksana,
             'modelSpk' => $modelSpk
         ]);
-        
+
         if (is_dir(public_path() . '/printed') == false) {
             mkdir(public_path() . '/printed', 0777);
         }

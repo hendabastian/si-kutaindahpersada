@@ -17,7 +17,7 @@
     <table style="width: 100%;">
         <tr>
             <td style="text-align: center;">
-            <img src="_{{asset('img/kop.jpg')}}" alt="">
+            <img src="{{public_path('img/kop.jpg')}}" alt="">
                 <hr>
             </td>
         </tr>
