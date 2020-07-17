@@ -17,7 +17,8 @@
                                   class="label label-warning"
                                   style="{{$pemesananProses->count() + $pemesananRAP->count() == 0 ? 'display:none;' : ''}}">{{$pemesananProses->count() + $pemesananRAP->count() }}</span></a>
                     </li>
-                    <li><a href="./index.html">Laporan Pemesanan</a></li>
+                    <li class="{{Request::is('admin/laporan/*') ? 'active' : ''}}"><a
+                           href="{{route('admin.laporan.index')}}">Laporan</a></li>
                 </ul>
             </li>
             <li class="{{(Request::is('admin/surat-perintah-kerja/*')) ? 'active' : ''}}">

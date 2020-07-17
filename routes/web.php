@@ -77,6 +77,11 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
         Route::get('detail/{id}', 'Admin\KwitansiController@detail')->name('detail');
         Route::post('proses-kwitansi/{id}', 'Admin\KwitansiController@prosesKwitansi')->name('proses-kwitansi');
     });
+
+    Route::name('laporan.')->prefix('laporan')->group(function() {
+        Route::get('index', 'Admin\LaporanController@index')->name('index');
+        Route::post('show-laporan', 'Admin\LaporanController@showLaporan')->name('show-laporan');
+    });
 });
 
 
