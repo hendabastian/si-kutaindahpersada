@@ -16,7 +16,7 @@
           type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="landingpage/css/styles.css" rel="stylesheet" />
+    <link href="{{asset('landingpage/css/styles.css')}}" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -196,7 +196,7 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal"><img src="/landingpage/assets/img/close-icon.svg"
+                <div class="close-modal" data-dismiss="modal"><img src="{{asset('/landingpage/assets/img/close-icon.svg')}}"
                          alt="Close modal" /></div>
                 <div class="container">
                     <div class="row justify-content-center">
@@ -250,7 +250,7 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal"><img src="/landingpage/assets/img/close-icon.svg"
+                <div class="close-modal" data-dismiss="modal"><img src="{{asset('/landingpage/assets/img/close-icon.svg')}}"
                          alt="Close modal" /></div>
                 <div class="container">
                     <div class="row justify-content-center">
@@ -281,10 +281,10 @@
     <!-- Third party plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <!-- Contact form JS-->
-    <script src="/landingpage/assets/mail/jqBootstrapValidation.js"></script>
-    <script src="/landingpage/assets/mail/contact_me.js"></script>
+    <script src="{{asset('landingpage/assets/mail/jqBootstrapValidation.js')}}"></script>
+    <script src="{{asset('landingpage/assets/mail/contact_me.js')}}"></script>
     <!-- Core theme JS-->
-    <script src="/landingpage/js/scripts.js"></script>
+    <script src="{{asset('landingpage/js/scripts.js')}}"></script>
 </body>
 
 </html>
