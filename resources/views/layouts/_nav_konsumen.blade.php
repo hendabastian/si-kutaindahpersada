@@ -16,7 +16,7 @@
                     <i class="fa fa-calendar-o"></i><span class="nav-text">Jadwal Pembuatan Rumah</span>
                 </a>
             </li>
-            <hr>
+            {{-- <hr>
             <li class="nav-label">Informasi</li>
             <li class="{{(Request::is('konsumen/info-pembangunan-rumah/*')) ? 'active' : ''}}">
                 <a href="{{route('konsumen.info-pembangunan-rumah.index')}}" aria-expanded="false">
@@ -27,7 +27,7 @@
                 <a href="{{route('konsumen.brosur.index')}}" aria-expanded="false">
                     <i class="fa fa-list-alt"></i><span class="nav-text">Brosur</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>
