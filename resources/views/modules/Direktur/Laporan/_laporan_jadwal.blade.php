@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <th style="text-align: center; width: 100%;">
-                <h3 style="margin: 5px 0px; text-decoration: underline;">Laporan Pemesanan</h3>
+                <h3 style="margin: 5px 0px; text-decoration: underline;">Laporan Jadwal Pembangunan</h3>
             </th>
         </tr>
         <tr>
@@ -48,8 +48,8 @@
                 <td>{{$no++}}</td>
                 <td>{{$item->no_pemesanan}}</td>
                 <td>{{$item->created_at}}</td>
-                <td>{{date('d-M-Y', strtotime($data->getJadwal->tgl_mulai)) }}</td>
-                <td>{{date('d-M-Y', strtotime($data->getJadwal->tgl_selesai)) }}</td>
+                <td>{{date('d-M-Y', strtotime($item->getJadwal->tgl_mulai)) }}</td>
+                <td>{{date('d-M-Y', strtotime($item->getJadwal->tgl_selesai)) }}</td>
             </tr>
             @endforeach
             @else

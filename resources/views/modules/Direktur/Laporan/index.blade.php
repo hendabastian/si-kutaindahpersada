@@ -15,6 +15,7 @@
                                 <select name="jenis_laporan" id="jenis_laporan" class="form-control">
                                     <option value="pemesanan">Pemesanan</option>
                                     <option value="pembayaran">Pembayaran</option>
+                                    <option value="jadwal_pembangunan">Jadwal pembangunan</option>
                                 </select>
                             </div>
                         </div>

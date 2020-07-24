@@ -50,6 +50,15 @@ class LaporanController extends Controller
                 $request->input('tgl_dari'),
                 $request->input('tgl_sampai')
             ])->get();
+
+            $pdf = PDF::loadView('modules.Direktur.Laporan._laporan_jadwal', [
+                'model' => $model,
+                'total' => 0,
+                'no' => 1
+            ])->setPaper('a4', 'landscape');
+            return $pdf->download('laporan_pembayaran.pdf');
+
+
         }
     }
 }
