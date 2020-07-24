@@ -24,8 +24,11 @@
 
 @if ($model->status == 11)
 <a href="{{asset('printed/kwitansi_' . $model->no_pemesanan . '.pdf')}}" target="_blank" rel="noopener noreferrer"
-   class="btn btn-info">Download Kwitansi</a>
+   class="btn btn-info"><i class="fa fa-money"></i> Download Kwitansi</a>
 @endif
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalVerifikasi">
+    <i class="fa fa-history"></i> History Verifikasi
+</button>
 <hr>
 <h4>{{$title}} {!! $model->status_label !!}</h4>
 <hr>
@@ -160,6 +163,40 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <img src="{{asset('uploads/' . $model->file_ktp)}}" alt="" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalVerifikasi">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">History Verifikasi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <thead>
+                                <th>Status</th>
+                                <th>Keterangan</th>
+                                <th>Dibuat pada</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($model->getVerifikasi as $indexVerifikasi => $dataVerifikasi)
+                                <tr>
+                                    <td>{!! $dataVerifikasi->status_label !!}</td>
+                                    <td>{{$dataVerifikasi->keterangan}}</td>
+                                    <td>{{$dataVerifikasi->created_at}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

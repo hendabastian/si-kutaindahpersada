@@ -196,7 +196,8 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal"><img src="{{asset('/landingpage/assets/img/close-icon.svg')}}"
+                <div class="close-modal" data-dismiss="modal"><img
+                         src="{{asset('/landingpage/assets/img/close-icon.svg')}}"
                          alt="Close modal" /></div>
                 <div class="container">
                     <div class="row justify-content-center">
@@ -216,6 +217,10 @@
                                         <td>{{$itemBrosur->model}}</td>
                                     </tr>
                                     <tr>
+                                        <th>Tipe</th>
+                                        <td>{{$itemBrosur->tipe}}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Harga</th>
                                         <td>Rp. {{number_format($itemBrosur->harga)}}</td>
                                     </tr>
@@ -232,7 +237,11 @@
                                         <td>{{$itemBrosur->luas_bangunan}} m&#178;</td>
                                     </tr>
                                 </table>
+                                <h4>Deskripsi: </h4>
                                 <p>{!! $itemBrosur->deskripsi !!}</p>
+
+                                <h4>Jangkauan: </h4>
+                                <p>{!!$itemBrosur->jangkauan!!}</p>
                                 <ul class="list-inline">
                                     <li>Date: {{$itemBrosur->created_at}}</li>
                                 </ul>
@@ -250,7 +259,8 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="close-modal" data-dismiss="modal"><img src="{{asset('/landingpage/assets/img/close-icon.svg')}}"
+                <div class="close-modal" data-dismiss="modal"><img
+                         src="{{asset('/landingpage/assets/img/close-icon.svg')}}"
                          alt="Close modal" /></div>
                 <div class="container">
                     <div class="row justify-content-center">

@@ -15,10 +15,16 @@
                                 <input type="text" name="judul" id="judul" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <label for="model">Model</label>
                                 <input type="text" name="model" id="model" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="form-group">
+                                <label for="tipe">Tipe</label>
+                                <input type="text" name="tipe" id="tipe" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -71,10 +77,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <input type="textarea" name="deskripsi" id="deskripsi" class="form-control">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" required>
+
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="jangkauan">Jangkauan Pembangunan</label>
+                            <textarea name="jangkauan" id="jangkauan" class="form-control" required></textarea>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto</label>
@@ -93,8 +107,12 @@
 @push('scripts')
 <script>
     tinymce.init({
-        selector: '#deskripsi',
-        branding: false,
-    })
+            selector: '#deskripsi',
+            branding: false,
+        })
+        tinymce.init({
+            selector: '#jangkauan',
+            branding: false
+        })
 </script>
 @endpush

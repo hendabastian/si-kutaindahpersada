@@ -13,46 +13,83 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="judul">Judul</label>
-                                <input type="text" name="judul" id="judul" class="form-control"
-                                       value="{{$model->judul}}">
+                            <input type="text" name="judul" id="judul" class="form-control" required value="{{$model->judul}}">
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-3">
                             <div class="form-group">
                                 <label for="model">Model</label>
-                                <input type="text" name="model" id="model" class="form-control" value="{{$model->model}}">
+                                <input type="text" name="model" id="model" class="form-control" required value="{{$model->model}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="form-group">
+                                <label for="tipe">Tipe</label>
+                            <input type="text" name="tipe" id="tipe" class="form-control" value="{{$model->tipe}}" required>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="harga">Harga</label>
-                                <input type="number" name="harga" id="harga" class="form-control" value="{{$model->harga}}">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            Rp.
+                                        </span>
+                                    </div>
+                                    <input type="number" name="harga" id="harga" class="form-control" required>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="lama_pembangunan">Lama Pembangunan</label>
-                                <input type="number" name="lama_pembangunan" id="lama_pembangunan" class="form-control" value="{{$model->lama_pembangunan}}">
+                                <div class="input-group">
+                                    <input type="number" name="lama_pembangunan" id="lama_pembangunan"
+                                           class="form-control"
+                                           required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Bulan</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="luas_tanah">Luas Tanah</label>
-                                <input type="number" name="luas_tanah" id="luas_tanah" class="form-control" value="{{$model->luas_tanah}}">
+                                <div class="input-group">
+                                    <input type="number" name="luas_tanah" id="luas_tanah" class="form-control"
+                                           required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">m&#178;</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="luas_bangunan">Luas Bangunan</label>
-                                <input type="number" name="luas_bangunan" id="luas_bangunan" class="form-control" value="{{$model->luas_bangunan}}">
+                                <div class="input-group">
+                                    <input type="number" name="luas_bangunan" id="luas_bangunan" class="form-control"
+                                           required>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">m&#178;</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" id="deskripsi" cols="30" rows="10">
-                            {{$model->deskripsi}}
-                        </textarea>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="deskripsi">Deskripsi</label>
+                                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" required>
+
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="jangkauan">Jangkauan Pembangunan</label>
+                            <textarea name="jangkauan" id="jangkauan" class="form-control" required></textarea>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto</label>

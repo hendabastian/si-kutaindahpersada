@@ -35,6 +35,11 @@ class Pemesanan extends Model
         return $this->hasOne(JadwalPembuatanRumah::class, 'pemesanan_id', 'id');
     }
 
+    public function getVerifikasi()
+    {
+        return $this->hasMany(PemesananVerifikasi::class, 'pemesanan_id', 'id');
+    }
+
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {

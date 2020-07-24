@@ -33,11 +33,13 @@ class BrosurController extends Controller
         if ($request->isMethod('post')) {
             $model->judul = $request->input('judul');
             $model->model = $request->input('model');
+            $model->tipe = $request->input('tipe');
             $model->harga = $request->input('harga');
             $model->lama_pembangunan = $request->input('lama_pembangunan');
             $model->luas_tanah = $request->input('luas_tanah');
             $model->luas_bangunan = $request->input('luas_bangunan');
             $model->deskripsi = $request->input('deskripsi');
+            $model->jangkauan = $request->input('jangkauan');
             $model->save();
             if ($request->hasFile('file')) {
                 foreach ($request->file('file') as $index => $data) {
@@ -69,12 +71,13 @@ class BrosurController extends Controller
         if ($request->isMethod('put')) {
             $model->judul = $request->input('judul');
             $model->model = $request->input('model');
+            $model->tipe = $request->input('tipe');
             $model->harga = $request->input('harga');
             $model->lama_pembangunan = $request->input('lama_pembangunan');
             $model->luas_tanah = $request->input('luas_tanah');
             $model->luas_bangunan = $request->input('luas_bangunan');
             $model->deskripsi = $request->input('deskripsi');
-
+            $model->jangkauan = $request->input('jangkauan');
             if ($request->hasFile('file')) {
                 foreach ($request->file('file') as $index => $data) {
                     $uid[$index] = uniqid(time(), true);

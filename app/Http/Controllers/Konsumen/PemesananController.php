@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Konsumen;
 
 use App\Http\Controllers\Controller;
 use App\JadwalPembuatanRumah;
+use App\Mail\KonsumenPemesananBaru;
 use App\Pemesanan;
 use App\PemesananVerifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PemesananController extends Controller
 {
@@ -23,6 +25,7 @@ class PemesananController extends Controller
     public function create(Request $request)
     {
         if ($request->isMethod('post')) {
+            Mail::to(Auth::user()->email)->send(new KonsumenPemesananBaru());
             switch ($request->input('tipe_bangunan')) {
                 case 'Rumah':
                     $kodeTipe = 'RM';
