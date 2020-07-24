@@ -180,4 +180,5 @@ Route::name('direktur.')->prefix('direktur')->middleware(['auth', 'role:4'])->gr
     });
 });
 
+Route::post('/post-diskusi/{pemesanan_id}', 'DiskusiController@postDiskusi')->name('post-diskusi');
 Route::get('/home', 'HomeController@index')->name('home');

@@ -40,6 +40,11 @@ class Pemesanan extends Model
         return $this->hasMany(PemesananVerifikasi::class, 'pemesanan_id', 'id');
     }
 
+    public function getDiskusi()
+    {
+        return $this->hasMany(PemesananDiskusi::class, 'pemesanan_id', 'id');
+    }
+
     public function getStatusLabelAttribute()
     {
         switch ($this->status) {
