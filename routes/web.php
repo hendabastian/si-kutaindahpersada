@@ -145,6 +145,8 @@ Route::name('pelaksana.')->prefix('pelaksana')->middleware(['auth', 'role:3'])->
         Route::get('detail/{id}', 'Pelaksana\RABController@detail')->name('detail');
         Route::get('create/{pemesanan_id}', 'Pelaksana\RABController@create')->name('create');
         Route::post('save-barang/{rab_id}', 'Pelaksana\RABController@saveBarang')->name('save-barang');
+        Route::put('edit-barang/{id}', 'Pelaksana\RABController@editBarang')->name('edit-barang');
+        Route::delete('delete-barang/{id}', 'Pelaksana\RABController@deleteBarang')->name('delete-barang');
         Route::post('save-rab/{rab_id}', 'Pelaksana\RABController@saveRAB')->name('save-rab');
     });
 

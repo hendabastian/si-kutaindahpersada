@@ -62,6 +62,7 @@
                         <th>Harga Satuan</th>
                         <th>Total Harga</th>
                         <th>Deskripsi</th>
+                        <th>Aksi</th>
                     </thead>
                     <tbody>
                         @foreach($getRAB->getDetail as $index => $item)
@@ -76,6 +77,21 @@
                             <td>{{number_format($item->harga_satuan)}}</td>
                             <td>{{number_format($item->volume * $item->harga_satuan)}}</td>
                             <td>{{$item->deskripsi}}</td>
+                            <td>
+
+                                <button class="btn btn-warning btn-xs" data-toggle="modal"
+                                        data-target="#modalEdit{{$index}}">
+                                    <i class="fa fa-edit"></i> Edit Barang
+                                </button>
+                                <form action="{{route('pelaksana.rab.delete-barang',  ['id' => $item->id])}}"
+                                      method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-xs"><i
+                                           class="fa fa-trash"></i>
+                                        Delete</button>
+                                </form>
+                            </td>
                         </tr>
 
                         @endforeach
@@ -93,6 +109,60 @@
                         </tr>
                     </tbody>
                 </table>
+                @foreach ($getRAB->getDetail as $indexDt => $itemDt)
+                <div class="modal fade" id="modalEdit{{$indexDt}}">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Edit Barang RAB
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{route('pelaksana.rab.edit-barang', ['id' => $itemDt->id])}}"
+                                      method="post"
+                                name="form-edit-barang{{$indexDt}}" id="form-edit-barang{{$indexDt}}">
+                                    @method('PUT')
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="uraian">Uraian</label>
+                                        <input type="text" name="uraian" id="uraian" class="form-control" required
+                                               value="{{$itemDt->uraian}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="satuan">Satuan</label>
+                                        <input type="text" name="satuan" id="satuan" class="form-control" required
+                                               value="{{$itemDt->satuan}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="volume">Volume</label>
+                                        <input type="number" name="volume" id="volume" class="form-control" required
+                                               value="{{$itemDt->volume}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="harga_satuan">Harga Satuan</label>
+                                        <input type="number" name="harga_satuan" id="harga_satuan" class="form-control"
+                                               required value="{{$itemDt->harga_satuan}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <input type="text" name="deskripsi" id="deskripsi" class="form-control"
+                                               value="{{$itemDt->deskripsi}}">
+                                    </div>
+                                    <div class="form-group text-right">
+                                    <button type="submit" class="btn btn-success" form="form-edit-barang{{$indexDt}}"><i
+                                               class="fa fa-save"></i> Simpan Perubahan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
                 @endif
             </div>
             <div class="card-footer">
@@ -106,8 +176,6 @@
                 </form>
             </div>
         </div>
-
-
     </div>
 </div>
 

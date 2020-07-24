@@ -75,6 +75,33 @@ class RABController extends Controller
         return back();
     }
 
+    public function editBarang($id, Request $request)
+    {
+        $model = RABDetail::findOrFail($id);
+        $model->uraian = $request->input('uraian');
+        $model->satuan = $request->input('satuan');
+        $model->volume = $request->input('volume');
+        $model->harga_satuan = $request->input('harga_satuan');
+        $model->deskripsi = $request->input('deskripsi');
+        $model->save();
+
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Uraian pembelian berhasil diedit'
+        ]);
+        return back();
+    }
+
+    public function deleteBarang($id, Request $request)
+    {
+        RABDetail::findOrFail($id)->delete();
+        $request->session()->flash('message', [
+            'class' => 'success',
+            'body' => 'Uraian pembelian berhasil dihapus'
+        ]);
+        return back();
+    }
+
     public function saveRAB($rab_id, Request $request)
     {
         $model = RAB::findOrFail($rab_id);
