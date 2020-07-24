@@ -9,6 +9,7 @@ use App\RAB;
 use App\RABDetail;
 use App\RABVerifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RABController extends Controller
 {
@@ -122,6 +123,8 @@ class RABController extends Controller
         $modelPemesananVerifikasi->status = 5;
         $modelPemesananVerifikasi->keterangan = $request->input('keterangan');
         $modelPemesananVerifikasi->save();
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+
 
         $request->session()->flash('message', [
             'class' => 'success',

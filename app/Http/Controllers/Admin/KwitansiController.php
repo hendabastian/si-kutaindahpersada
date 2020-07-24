@@ -7,6 +7,7 @@ use App\Kwitansi;
 use App\Pemesanan;
 use App\PemesananVerifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 
 class KwitansiController extends Controller
@@ -48,6 +49,8 @@ class KwitansiController extends Controller
         $modelVerifikasi->status = 11;
         $modelVerifikasi->keterangan = 'Dicetak pada: ' . date('Y-m-d h:i:s');
         $modelVerifikasi->save();
+
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
 
         $pdf = PDF::loadView('modules.Admin.Kwitansi._doc_kwitansi', [
             'model' => $model,

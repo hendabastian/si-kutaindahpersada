@@ -7,6 +7,7 @@ use App\JadwalPembuatanRumah;
 use App\Pemesanan;
 use App\PemesananVerifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class JadwalPembuatanRumahController extends Controller
 {
@@ -47,6 +48,9 @@ class JadwalPembuatanRumahController extends Controller
         $modelVerifikasi->status = 10;
         $modelVerifikasi->keterangan = $request->input('keterangan');
         $modelVerifikasi->save();
+
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+
 
         $request->session()->flash('message', [
             'class' => 'success',

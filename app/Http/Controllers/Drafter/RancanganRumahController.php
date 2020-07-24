@@ -8,6 +8,7 @@ use App\PemesananVerifikasi;
 use App\RancanganRumah;
 use App\RancanganRumahAttachment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RancanganRumahController extends Controller
 {
@@ -58,6 +59,8 @@ class RancanganRumahController extends Controller
             $modelAttachment[$index]->deskripsi = $request->input('keterangan');
             $modelAttachment[$index]->save();
         }
+        
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
 
         $request->session()->flash('message', [
             'class' => 'success',

@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 
 class PemesananController extends Controller
@@ -105,6 +106,9 @@ class PemesananController extends Controller
         $modelVerifikasi->keterangan = $request->input('keterangan');
         $modelVerifikasi->save();
 
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+
+
         $request->session()->flash('message', [
             'class' => 'success',
             'body' => 'Data Pemesanan berhasil diproses'
@@ -131,6 +135,9 @@ class PemesananController extends Controller
         $modelVerifikasi->keterangan = $request->input('keterangan');
         $modelVerifikasi->save();
 
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+
+
         $request->session()->flash('message', [
             'class' => 'success',
             'body' => 'Data Pemesanan berhasil diproses'
@@ -155,6 +162,9 @@ class PemesananController extends Controller
         $modelVerifikasi->status = 9;
         $modelVerifikasi->keterangan = $request->input('keterangan');
         $modelVerifikasi->save();
+
+        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+
 
         $request->session()->flash('message', [
             'class' => 'success',
