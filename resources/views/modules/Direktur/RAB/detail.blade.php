@@ -197,12 +197,12 @@
                     @csrf
                     <div class="form-group">
                         <div class="form-check form-check-inline">
-                            <input type="radio" name="status" id="statusApprove" value="2" class="form-check-input"
+                            <input type="radio" name="status" id="statusApprove" value="6" class="form-check-input"
                                    required>
                             <label for="statusApprove" class="form-check-label">Approve</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" name="status" id="statusTolak" value="0" class="form-check-input"
+                            <input type="radio" name="status" id="statusTolak" value="4" class="form-check-input"
                                    required>
                             <label for="statusTolak" class="form-check-label">Tolak</label>
                         </div>

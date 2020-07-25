@@ -56,9 +56,8 @@ class LaporanController extends Controller
                 'total' => 0,
                 'no' => 1
             ])->setPaper('a4', 'landscape');
-            return $pdf->download('laporan_pembayaran.pdf');
 
-
+            return $pdf->download('laporan_jadwal_pembangunan.pdf');
         }
     }
 }

@@ -33,7 +33,7 @@ class RABController extends Controller
     public function approve($id, Request $request)
     {
         $model = Pemesanan::findOrFail($id);
-        $model->status = 6;
+        $model->status = $request->input('status');
         $model->save();
 
         $modelPemesananVerifikasi = new PemesananVerifikasi();
@@ -43,7 +43,11 @@ class RABController extends Controller
         $modelPemesananVerifikasi->save();
 
         $modelRab = RAB::where('pemesanan_id', $model->id)->firstOrFail();
-        $modelRab->status = 3;
+        if ($request->input('status') == 6) {
+            $modelRab->status = 3;
+        } elseif ($request->input('status') == 4) {
+            $modelRab->status = 0;
+        }
         $modelRab->save();
 
         $modelRabVerifikasi = new RABVerifikasi();
@@ -54,10 +58,18 @@ class RABController extends Controller
 
         Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
 
-        $request->session()->flash('message', [
-            'class' => 'success',
-            'body' => 'Data RAB berhasil diapprove'
-        ]);
+        if ($request->input('status') == 6) {
+            $request->session()->flash('message', [
+                'class' => 'success',
+                'body' => 'Data RAB berhasil diapprove'
+            ]);
+        } elseif ($request->input('status')==4) {
+            $request->session()->flash('message', [
+                'class' => 'danger',
+                'body' => 'Data RAB berhasil ditolak'
+            ]);
+        }
+        
 
         return back();
     }
