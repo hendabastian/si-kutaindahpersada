@@ -69,7 +69,7 @@ class PemeriksaanLokasiController extends Controller
         $modelVerifikasi->status = 2;
         $modelVerifikasi->save();
 
-        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+        Mail::to($modelPemesanan->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
 
         $request->session()->flash('message', [
             'class' => 'success',
@@ -99,7 +99,7 @@ class PemeriksaanLokasiController extends Controller
         $modelVerifikasi->keterangan = 'Lokasi tidak valid';
         $modelVerifikasi->status = 0;
         $modelVerifikasi->save();
-        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+        Mail::to($modelPemesanan->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
 
         $request->session()->flash('message', [
             'class' => 'success',

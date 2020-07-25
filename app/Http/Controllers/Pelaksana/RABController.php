@@ -123,7 +123,7 @@ class RABController extends Controller
         $modelPemesananVerifikasi->status = 5;
         $modelPemesananVerifikasi->keterangan = $request->input('keterangan');
         $modelPemesananVerifikasi->save();
-        Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
+        Mail::to($modelPemesanan->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
 
 
         $request->session()->flash('message', [
