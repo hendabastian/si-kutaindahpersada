@@ -12,8 +12,8 @@
                 </button>
             </div>
             <div class="card-body">
-                @if($model->getDiskusi->isNotEmpty())
-                @foreach ($model->getDiskusi as $item)
+                @if($model->getPemesanan->getDiskusi->isNotEmpty())
+                @foreach ($model->getPemesanan->getDiskusi as $item)
                 <h5>{{$item->getUser->name}}</h5>
                 <h6>{{$item->created_at}}</h6>
                 <p>{{$item->content}}</p>
