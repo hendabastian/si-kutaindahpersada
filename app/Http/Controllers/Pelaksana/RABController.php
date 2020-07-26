@@ -15,7 +15,7 @@ class RABController extends Controller
 {
     public function index()
     {
-        $model = Pemesanan::where('status', 4)->get();
+        $model = Pemesanan::where('status', '>=', 4)->get();
         return view('modules.Pelaksana.RAB.index', [
             'model' => $model,
             'title' => 'RAB'
