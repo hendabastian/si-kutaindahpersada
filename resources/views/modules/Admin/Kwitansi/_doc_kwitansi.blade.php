@@ -114,6 +114,9 @@
               <tr>
                 <td colspan="7">Terbilang: ## {{$terbilang}}</td>
                 </tr>
+                <tr>
+                <td colspan="7">Keterangan: {{$model->getKwitansi->deskripsi}}</td>
+                </tr>
         </tbody>
     </table>
     <br>

@@ -4,15 +4,41 @@
 <a href="{{route('admin.kwitansi.index')}}"
    class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
 @if($model->status == 10)
-<button type="submit" form="kwitansi-form" class="btn btn-info"
-        onclick="return confirm('Anda yakin akan kwitansi ke konsumen?')">
-    <i class="fa fa-check"></i> Proses Kwitansi
-</button></td>
+<button type="button" class="btn btn-primary" data-toggle="modal"
+        data-target="#modalKwitansi">
+    <i class="fa fa-print"></i> Cetak Kwitansi
+</button>
 
-<form action="{{route('admin.kwitansi.proses-kwitansi',  ['id' => $model->id])}}"
-      method="post" id="kwitansi-form" name="kwitansi-form">
-    @csrf
-</form>
+<div class="modal fade" id="modalKwitansi">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cetak Kwitansi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form action="{{route('admin.kwitansi.proses-kwitansi',  ['id' => $model->id])}}" method="post"
+                              id="kwitansi-form" name="kwitansi-form">
+                            @csrf
+                            <div class="form-group">
+                                <label for="deskripsi">Keterangan</label>
+                                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="10"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success" form="kwitansi-form"><i
+                                   class="fa fa-print"></i>
+                                Cetak
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endif
 
 @if ($model->status == 11)
@@ -58,12 +84,14 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <form action="{{route('post-diskusi', ['pemesanan_id' => $model->id])}}" method="post" name="form-diskusi" id="form-diskusi">
+                            <form action="{{route('post-diskusi', ['pemesanan_id' => $model->id])}}" method="post"
+                                  name="form-diskusi" id="form-diskusi">
                                 @csrf
                                 <div class="form-group">
                                     <textarea name="content" id="content" class="form-control" rows="10"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-success" form="form-diskusi"><i class="fa fa-save"></i> Simpan
+                                <button type="submit" class="btn btn-success" form="form-diskusi"><i
+                                       class="fa fa-save"></i> Simpan
                                 </button>
                             </form>
                         </div>
@@ -132,54 +160,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <div class="col-md-12">
-        <div class="card">
-            <div class="card-header border-bottom">
-                <h4>Data Pemeriksaan Lokasi</h4>
-            </div>
-            <div class="card-body">
-                @if ($model->getPemeriksaanLokasi->status == 1)
-                {{$model->getPemeriksaanLokasi->status_label}}
-    @else
-    <div class="row">
-        <div class="col-sm-12 col-md-4">
-            @foreach ($model->getPemeriksaanLokasi->getLokasiAttachment as $index => $attachment)
-            <img src="{{asset('uploads/' . $attachment->file)}}" alt="{{$attachment->deskripsi}}"
-                 width="100%">
-            <hr>
-            @endforeach
-        </div>
-        <div class="col-sm-12 col-md-8">
-            <table class="table table-striped">
-                <th colspan="2" class="text-center">Hasil Pemeriksaan Lokasi</th>
-                <tr>
-                    <th>Nama Pemilik</th>
-                    <td>{{$model->getPemeriksaanLokasi->nama_pemilik}}</td>
-                </tr>
-                <tr>
-                    <th>Alamat Lokasi</th>
-                    <td>{{$model->getPemeriksaanLokasi->alamat_lokasi}}</td>
-                </tr>
-                <tr>
-                    <th>Luas Tanah</th>
-                    <td>{{$model->getPemeriksaanLokasi->luas_tanah}}</td>
-                </tr>
-                <tr>
-                    <th>Luas Bangunan</th>
-                    <td>{{$model->getPemeriksaanLokasi->luas_bangunan}}</td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td>{!! $model->getPemeriksaanLokasi->status_label !!}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    @endif
-</div>
-</div>
-</div> --}}
 </div>
 
 <div class="modal fade" id="modalKtp">
@@ -287,12 +267,3 @@
 </div>
 @endif
 @endsection
-
-@push('scripts')
-<script>
-    tinymce.init({
-        selector: '#deskripsi',
-        branding: false,
-    })
-</script>
-@endpush

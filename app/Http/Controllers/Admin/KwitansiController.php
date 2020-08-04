@@ -39,7 +39,7 @@ class KwitansiController extends Controller
         $modelKwitansi = new Kwitansi();
         $modelKwitansi->pemesanan_id = $model->id;
         $modelKwitansi->no_kwitansi = $model->no_pemesanan;
-        $modelKwitansi->deskripsi = 'Dicetak pada: ' . date('Y-m-d h:i:s');
+        $modelKwitansi->deskripsi = $request->input('deskripsi');
         $modelKwitansi->status = 1;
         $modelKwitansi->save();
 
@@ -47,7 +47,7 @@ class KwitansiController extends Controller
         $modelVerifikasi = new PemesananVerifikasi();
         $modelVerifikasi->pemesanan_id = $model->id;
         $modelVerifikasi->status = 11;
-        $modelVerifikasi->keterangan = 'Dicetak pada: ' . date('Y-m-d h:i:s');
+        $modelVerifikasi->keterangan = $request->input('deskripsi');
         $modelVerifikasi->save();
 
         Mail::to($model->getUser->email)->send(new \App\Mail\KonsumenPemesananBaru());
