@@ -2,8 +2,6 @@
 
 @section('content')
 <style>
-
-
     .progressbar {
         counter-reset: step;
     }
