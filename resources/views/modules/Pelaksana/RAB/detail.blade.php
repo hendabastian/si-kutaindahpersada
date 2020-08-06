@@ -214,7 +214,7 @@
         </div>
     </div>
 </div>
-
+@if ($model->status > 4)
 @foreach ($model->getRAB->getDetail as $indexDt => $itemDt)
 <div class="modal fade" id="modalEdit{{$indexDt}}">
     <div class="modal-dialog modal-lg">
@@ -268,6 +268,7 @@
     </div>
 </div>
 @endforeach
+@endif
 
 <div class="modal fade" id="modalProses">
     <div class="modal-dialog modal-lg">

@@ -37,7 +37,7 @@
                                             Rp.
                                         </span>
                                     </div>
-                                    <input type="number" name="harga" id="harga" class="form-control" required>
+                                    <input type="number" name="harga" id="harga" class="form-control" required value="{{$model->harga}}">
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 <div class="input-group">
                                     <input type="number" name="lama_pembangunan" id="lama_pembangunan"
                                            class="form-control"
-                                           required>
+                                           required value="{{$model->lama_pembangunan}}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">Bulan</span>
                                     </div>
@@ -59,7 +59,7 @@
                                 <label for="luas_tanah">Luas Tanah</label>
                                 <div class="input-group">
                                     <input type="number" name="luas_tanah" id="luas_tanah" class="form-control"
-                                           required>
+                                           required value="{{$model->luas_tanah}}">
                                     <div class="input-group-append">
                                         <span class="input-group-text">m&#178;</span>
                                     </div>
@@ -71,7 +71,7 @@
                                 <label for="luas_bangunan">Luas Bangunan</label>
                                 <div class="input-group">
                                     <input type="number" name="luas_bangunan" id="luas_bangunan" class="form-control"
-                                           required>
+                                           required value="{{$model->luas_bangunan}}">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">m&#178;</span>
                                     </div>
@@ -82,13 +82,13 @@
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi</label>
                                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="10" required>
-
+                                    {{$model->deskripsi}}
                                 </textarea>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="jangkauan">Jangkauan Pembangunan</label>
-                            <textarea name="jangkauan" id="jangkauan" class="form-control" required></textarea>
+                            <textarea name="jangkauan" id="jangkauan" class="form-control" required>{{$model->jangkauan_pembangunan}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
