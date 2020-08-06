@@ -206,8 +206,10 @@
                                 <!-- Project Details Go Here-->
                                 <h2 class="text-uppercase">{{$itemBrosur->judul}}</h2>
                                 @if (isset($itemBrosur->detailBrosur->first()->file))
-                                <img src="{{asset('uploads/' . $itemBrosur->detailBrosur->first()->file)}}"
-                                     style="width: 100%;">
+                                    @foreach ($itemBrosur->detailBrosur as $detailBrosur)
+                                    <img src="{{asset('uploads/' . $detailBrosur->file)}}"
+                                        style="width: 100%;">
+                                    @endforeach
                                 @else
                                 <h4>TIdak ada Gambar</h4>
                                 @endif
