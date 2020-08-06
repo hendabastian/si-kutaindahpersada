@@ -87,7 +87,9 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="jangkauan">Jangkauan Pembangunan</label>
-                            <textarea name="jangkauan" id="jangkauan" class="form-control" required></textarea>
+                            <textarea name="jangkauan" id="jangkauan" class="form-control" required>
+                                
+                            </textarea>
                         </div>
                     </div>
                     <div class="form-group">
