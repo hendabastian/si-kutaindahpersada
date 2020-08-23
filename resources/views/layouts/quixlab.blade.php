@@ -24,7 +24,7 @@
     $pemesananRAB = App\Pemesanan::where('status', 4);
     $pemesananDirektur = App\Pemesanan::where('status', 5);
     $pemesananRAP = App\Pemesanan::where('status', 6);
-    $pemesananTanggalKonsumen = App\Pemesanan::where('status', 7)->andWhere('user_id', Auth::user()->id);
+    $pemesananTanggalKonsumen = App\Pemesanan::where('status', 7)->where('user_id', Auth::user()->id);
     $pemesananSPK = App\Pemesanan::where('status', 8);
     $pemesananJadwal = App\Pemesanan::where('status', 9);
     $pemesananKwitansi = App\Pemesanan::where('status', 10);
