@@ -25,7 +25,7 @@
                         <input type="text" name="satuan" id="satuan" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="volume">Volume</label>
+                        <label for="volume">Jml. Beli</label>
                         <input type="number" name="volume" id="volume" class="form-control" required>
                     </div>
                     <div class="form-group">
@@ -58,7 +58,7 @@
                         <th>No</th>
                         <th>Uraian</th>
                         <th>Besaran</th>
-                        <th>Volume</th>
+                        <th>Jml. Beli</th>
                         <th>Harga Satuan</th>
                         <th>Total Harga</th>
                         <th>Deskripsi</th>
@@ -138,7 +138,7 @@
                                                value="{{$itemDt->satuan}}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="volume">Volume</label>
+                                        <label for="volume">Jml. Beli</label>
                                         <input type="number" name="volume" id="volume" class="form-control" required
                                                value="{{$itemDt->volume}}">
                                     </div>

@@ -38,7 +38,7 @@
             <th style="text-align: left; width: 35px;">No</th>
             <th style="text-align: left; width: 150px;">Uraian</th>
             <th style="text-align: left; width: 150px;">Besaran</th>
-            <th style="text-align: left; width: 150px;">Volume</th>
+            <th style="text-align: left; width: 150px;">Jml. Beli</th>
             <th style="text-align: left; width: 150px;">Harga Satuan</th>
             <th style="text-align: left; width: 150px;">Total Harga</th>
             <th style="text-align: left; width: 150px;">Deskripsi</th>

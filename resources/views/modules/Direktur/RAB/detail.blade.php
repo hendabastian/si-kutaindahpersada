@@ -78,7 +78,7 @@
                         <th>No</th>
                         <th>Uraian</th>
                         <th>Besaran</th>
-                        <th>Volume</th>
+                        <th>Jml. Beli</th>
                         <th>Harga Satuan</th>
                         <th>Total Harga</th>
                         <th>Deskripsi</th>
