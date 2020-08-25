@@ -21,7 +21,7 @@
                         <input type="text" name="uraian" id="uraian" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="satuan">Satuan</label>
+                        <label for="satuan">Besaran</label>
                         <input type="text" name="satuan" id="satuan" class="form-control" required>
                     </div>
                     <div class="form-group">
@@ -57,7 +57,7 @@
                     <thead>
                         <th>No</th>
                         <th>Uraian</th>
-                        <th>Satuan</th>
+                        <th>Besaran</th>
                         <th>Volume</th>
                         <th>Harga Satuan</th>
                         <th>Total Harga</th>
@@ -72,7 +72,7 @@
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$item->uraian}}</td>
-                            <td>{{$item->satuan}}</td>
+                            <td>{{$item->besaaran}}</td>
                             <td>{{number_format($item->volume)}}</td>
                             <td>{{number_format($item->harga_satuan)}}</td>
                             <td>{{number_format($item->volume * $item->harga_satuan)}}</td>
@@ -133,7 +133,7 @@
                                                value="{{$itemDt->uraian}}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="satuan">Satuan</label>
+                                        <label for="satuan">Besaran</label>
                                         <input type="text" name="satuan" id="satuan" class="form-control" required
                                                value="{{$itemDt->satuan}}">
                                     </div>

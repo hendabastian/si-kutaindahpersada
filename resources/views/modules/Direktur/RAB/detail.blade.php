@@ -77,9 +77,10 @@
                     <thead>
                         <th>No</th>
                         <th>Uraian</th>
-                        <th>Satuan</th>
+                        <th>Besaran</th>
                         <th>Volume</th>
                         <th>Harga Satuan</th>
+                        <th>Total Harga</th>
                         <th>Deskripsi</th>
                     </thead>
                     <tbody>

@@ -76,7 +76,7 @@
                     <thead>
                         <th>No</th>
                         <th>Uraian</th>
-                        <th>Satuan</th>
+                        <th>Besaran</th>
                         <th>Volume</th>
                         <th>Harga Satuan</th>
                         <th>Total Harga</th>
@@ -239,7 +239,7 @@
                                value="{{$itemDt->uraian}}">
                     </div>
                     <div class="form-group">
-                        <label for="satuan">Satuan</label>
+                        <label for="satuan">Besaran</label>
                         <input type="text" name="satuan" id="satuan" class="form-control" required
                                value="{{$itemDt->satuan}}">
                     </div>
