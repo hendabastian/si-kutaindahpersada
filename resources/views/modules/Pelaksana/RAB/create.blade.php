@@ -72,7 +72,7 @@
                         <tr>
                             <td>{{$no++}}</td>
                             <td>{{$item->uraian}}</td>
-                            <td>{{$item->besaaran}}</td>
+                            <td>{{$item->satuan}}</td>
                             <td>{{number_format($item->volume)}}</td>
                             <td>{{number_format($item->harga_satuan)}}</td>
                             <td>{{number_format($item->volume * $item->harga_satuan)}}</td>
